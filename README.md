@@ -4,7 +4,9 @@ Student Names:
 2.	Hansraj Mathakar
 3.	Tina Aggarwal
 4.	Sojan Mathew
+
 No of Ideas: 03
+
 Idea 1:
 Automating Insurance system through a valid medium of trust.
 
