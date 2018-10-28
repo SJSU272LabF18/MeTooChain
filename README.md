@@ -27,7 +27,8 @@ Details stored on smart contract:
 
 
 Idea 2:
-Sexual Encounter consent via blockchain
+Sexual Encounter consent via blockchain - APPROVED 
+Comment: related to #metoo movement and how this can help. one problem I see is adoption of the app for people with malicious intention. How do you deal with it? A mobile app would be needed more than web app 
 
 Abstract:
 During sexual encounters, nowadays a lot of things can go wrong. Think of unwanted videos, withholding information about STDs and offensive porn reenactment. While you're protected by law, litigating any offenses through court is nearly impossible in reality.
