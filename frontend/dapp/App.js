@@ -166,90 +166,82 @@ export default class App extends Component {
         });
     }
   };
-
   newUploadScreen() {
     return (
       <View style={{ flex: 1, marginTop: 10 }}>
-        <View style={{ alignItems: "center", flex: 1 }}>
+        <View style={{ alignItems: 'center', flex: 1 }}>
           <View>
-            <Text style={{ color: "blue" }}>
-              {" "}
-              Sojan's very Excellent file system using ethereum and IPFS{" "}
-            </Text>
+            <Text style={{ color: 'blue' }}>  DAPP file system using ethereum and IPFS </Text>
           </View>
-          <View style={{ marginTop: "10%", flex: 1 }}>
+          <View style={{ marginTop: '10%', flex: 1 }}>
             <TouchableOpacity onPress={() => this.selectImage()}>
-              <View
-                style={[
-                  styles.avatar,
-                  styles.avatarContainer,
-                  { marginBottom: 20 }
-                ]}
-              >
-                {this.state.avatarSource === null ? (
-                  <Text>Select a Photo</Text>
-                ) : (
-                  <Image
-                    style={styles.avatar}
-                    source={this.state.avatarSource}
-                  />
-                )}
+              <View style={[styles.avatar, styles.avatarContainer, { marginBottom: 20 }]}>
+                {this.state.avatarSource === null ? <Text>Select a Photo</Text> :
+                  <Image style={styles.avatar} source={this.state.avatarSource} />
+                }
               </View>
             </TouchableOpacity>
 
-            <View style={{ alignItems: "center" }}>
+            <View style={{ alignItems: 'center' }}>
               <TextInput
                 placeholder="Label"
-                onChangeText={label => this.setState({ label })}
+                onChangeText={(label) => this.setState({ label })}
                 style={styles.label}
                 underlineColorAndroid="transparent"
               />
             </View>
 
-            <View style={{ alignItems: "center", marginTop: "10%" }}>
-              <TouchableOpacity
-                onPress={() => this.upload()}
-                style={[
-                  styles.label,
-                  { justifyContent: "center", backgroundColor: "#8470ff" }
-                ]}
-              >
-                <Text style={{ fontWeight: "bold" }}> UPLOAD </Text>
+            <View style={{ alignItems: 'center', marginTop: '10%' }}>
+              <TouchableOpacity onPress={() => this.upload()} style={[styles.label, { justifyContent: 'center', backgroundColor: '#8470ff' }]}>
+                <Text style={{ fontWeight: 'bold' }}>  UPLOAD </Text>
               </TouchableOpacity>
             </View>
           </View>
-        </View>
-        {this.state.loading !== null ? (
-          this.state.loading ? (
-            <Spinner size="large" />
-          ) : (
-            <View>
-              <TextContainer first="Label" second={this.state.label} />
+        </View>{
+          this.state.loading !== null ? (
+            this.state.loading ? (
+              <Spinner size="large" />
+            ) : (
+                <View>
 
-              <TextContainer first="Hash" second={this.state.hash} />
+                  <TextContainer
+                    first="Label"
+                    second={this.state.label}
+                  />
 
-              <TextContainer
-                first="Address on IPFS"
-                second={this.state.address}
-                link={() => Linking.openURL(this.state.address)}
-                style={{ color: "blue", textDecorationLine: "underline" }}
-              />
+                  <TextContainer
+                    first="Hash"
+                    second={this.state.hash}
+                  />
 
-              <TextContainer
-                first="Transaction Hash"
-                second={this.state.transactionHash}
-              />
+                  <TextContainer
+                    first="Address on IPFS"
+                    second={this.state.address}
+                    link={() => Linking.openURL(this.state.address)}
+                    style={{ color: 'blue', textDecorationLine: 'underline' }}
+                  />
 
-              <TextContainer first="Block Hash" second={this.state.blockHash} />
-            </View>
-          )
-        ) : null}
+                  <TextContainer
+                    first="Transaction Hash"
+                    second={this.state.transactionHash}
+                  />
+
+                  <TextContainer
+                    first="Block Hash"
+                    second={this.state.blockHash}
+                  />
+
+                </View>
+              )
+          ) : null
+        }
       </View>
-    );
+    )
   }
   render() {
     return (
       <ScrollView style={styles.container} contentContainerStyle={{ flex: 1 }}>
+      
         <View>
           <Header>
             <Body>
