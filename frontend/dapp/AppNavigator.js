@@ -4,20 +4,24 @@ import { createAppContainer, createStackNavigator, StackActions, NavigationActio
 import HomeScreen from "./screens/HomeScreen";
 import Requests from './screens/Requests';
 import App from "./App";
+import LoginScreen from './screens/LoginScreen';
 
 
 const AppNavigator = createStackNavigator({
   Home: {
-    screen: HomeScreen,
+    screen: HomeScreen
+  },
+  Login:{
+    screen:LoginScreen
   },
   Details: {
-    screen: Requests,
+    screen: Requests
   },
   Dapp:{
     screen: App
   }
 }, {
-    initialRouteName: 'Home',
+    initialRouteName: 'Login',
 });
 
 export default createAppContainer(AppNavigator);
