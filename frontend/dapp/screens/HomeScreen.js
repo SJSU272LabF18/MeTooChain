@@ -9,23 +9,25 @@ class HomeScreen extends React.Component {
         <Button
           title="Go to Details"
           onPress={() => {
-            this.props.navigation.dispatch(StackActions.reset({
-              index: 0,
-              actions: [
-                NavigationActions.navigate({ routeName: 'Details' })
-              ],
-            }))
+            this.props.navigation.navigate({routeName: 'Details'});
+            // this.props.navigation.dispatch(StackActions.reset({
+            //   index: 0,
+            //   actions: [
+            //     NavigationActions.navigate({ routeName: 'Details' })
+            //   ],
+            // }))
           }}
         />
          <Button
           title="Go to Dapp Images"
           onPress={() => {
-            this.props.navigation.dispatch(StackActions.reset({
-              index: 0,
-              actions: [
-                NavigationActions.navigate({ routeName: 'Dapp' })
-              ],
-            }))
+            this.props.navigation.navigate({routeName: 'Dapp'});
+            // this.props.navigation.dispatch(StackActions.reset({
+            //   index: 0,
+            //   actions: [
+            //     NavigationActions.navigate({ routeName: 'Dapp' })
+            //   ],
+            // }))
           }}
         />
       </View>
