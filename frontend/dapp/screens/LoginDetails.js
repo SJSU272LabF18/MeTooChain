@@ -55,7 +55,7 @@ class LoginDetails extends React.Component {
           color='#384499'
           title="Login"
           onPress={() => {
-            this.props.navigation.navigate({routeName: 'Dapp'});
+            this.props.navigation.navigate({routeName: 'Requests'});
           }}
         />
         </View>

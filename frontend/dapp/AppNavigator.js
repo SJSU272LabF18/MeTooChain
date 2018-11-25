@@ -15,7 +15,7 @@ const AppNavigator = createStackNavigator({
   Login:{
     screen:LoginScreen
   },
-  Details: {
+  Requests: {
     screen: Requests
   },
   LoginDetails:{
