@@ -15,6 +15,8 @@ router.get('/images/:label', Image.findByLabel);
 router.get('/images-id/:id', Image.findById);
 
 /*  upload POST endpoint */
+console.log("Hello World initial");
+
 router.post('/upload', Image.upload.single('file'), Image.uploadFile, Image.postData, Image.create);
 
 router.get('/getfile/:hash', Image.getFile);

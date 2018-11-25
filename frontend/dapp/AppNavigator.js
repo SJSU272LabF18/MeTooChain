@@ -5,6 +5,7 @@ import HomeScreen from "./screens/HomeScreen";
 import Requests from './screens/Requests';
 import App from "./App";
 import LoginScreen from './screens/LoginScreen';
+import LoginDetails from './screens/LoginDetails';
 
 
 const AppNavigator = createStackNavigator({
@@ -16,6 +17,9 @@ const AppNavigator = createStackNavigator({
   },
   Details: {
     screen: Requests
+  },
+  LoginDetails:{
+    screen:LoginDetails
   },
   Dapp:{
     screen: App

@@ -1,14 +1,24 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button,StyleSheet } from 'react-native';
+
+const styles=StyleSheet.create({
+  body:{
+    backgroundColor:'#fd86b0',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+});
+
 class LoginScreen extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Login Screen</Text>
+      <View style={styles.body}>
+        <Text>Login Screen Start</Text>
         <Button
-          title="Login"
+          title="Login" 
           onPress={() => {
-            this.props.navigation.navigate({routeName: 'Details'});
+            this.props.navigation.navigate({routeName: 'LoginDetails'});
           }}
         />
          <Button

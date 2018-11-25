@@ -110,6 +110,8 @@ exports.webStatus = async (req, res) => {
 };
 
 exports.uploadFile = async (req, res, next) => {
+  console.log("Hello World uploadFile");
+
   if (!req.file) {
     return res.status(422).json({
       error: "File needs to be provided."
