@@ -25,6 +25,7 @@ const AppNavigator = createStackNavigator({
     screen: App
   }
 }, {
+    headerMode: 'none',
     initialRouteName: 'Login',
 });
 
