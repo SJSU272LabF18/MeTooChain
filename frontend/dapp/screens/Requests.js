@@ -1,17 +1,29 @@
 import React,{Fragment} from 'react';
-import { View, Text, Button,StyleSheet } from 'react-native';
+import { View, Text, Button,StyleSheet,ScrollView } from 'react-native';
 
 const styles=StyleSheet.create(
   {
+    body:{
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor:'#eb3b5a'
+    },
     btn:{ 
       width: "90%",
       margin: 10,
       backgroundColor: "red" 
     },
    reqContainer: {
-    width: "90%",
-    margin: 1,
-    backgroundColor:"blue"
+    width: "100%",
+    borderWidth:0.4,
+    padding:5,
+    borderColor:"grey",
+    backgroundColor:"white"
+    },
+    scrollView:{
+      width:"90%",
+     height:"50%"
     }
   }
 );
@@ -30,19 +42,45 @@ class Requests extends React.Component {
       {
         name:"John Abraham",
         message:"Requesting consent for a flirting"
+      },
+      {
+        name:"John Doe",
+        message:"Requesting consent for a fling"
+      },
+      {
+        name:"John Cho",
+        message:"Requesting consent for a casual date"
+      },
+      {
+        name:"John Abraham",
+        message:"Requesting consent for a flirting"
+      },
+      {
+        name:"John Doe",
+        message:"Requesting consent for a fling"
+      },
+      {
+        name:"John Cho",
+        message:"Requesting consent for a casual date"
+      },
+      {
+        name:"John Abraham",
+        message:"Requesting consent for a flirting"
       }
     ]
   }
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={styles.body}>
         <Text>Details Screen</Text>
+        <ScrollView style={styles.scrollView}>
         {this.state.list.map((ent)=>{
           return(<View style={styles.reqContainer}>
             <Text>{ent.name}</Text>
             <Text>{ent.message}</Text>
           </View>)
         })}
+        </ScrollView>
         <View  style={styles.btn}>
           <Button
          color='#384499'
