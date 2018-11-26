@@ -1,5 +1,13 @@
 import React, { Fragment } from "react";
-import {Alert, View, Text, Button, StyleSheet, ScrollView,TouchableHighlight } from "react-native";
+import {
+  Alert,
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  ScrollView,
+  TouchableHighlight
+} from "react-native";
 
 const styles = StyleSheet.create({
   body: {
@@ -41,15 +49,30 @@ class Requests extends React.Component {
         name: "John Abraham",
         message: "flirting"
       }
-      
     ]
   };
-  reqCicked=(usr)=>{
-    this.props.navigation.navigate('userRequest',{
-      userInfo:usr
-    });
+
+  componentDidMount() {
+    fetch("http://10.0.0.216:5000/requests", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        console.log("response is", responseData.value[0].requests);
+        this.setState({ list: responseData.value[0].requests });
+      })
+      .done();
   }
-  constructor(props){
+  reqCicked = usr => {
+    this.props.navigation.navigate("userRequest", {
+      userInfo: usr
+    });
+  };
+  constructor(props) {
     super(props);
     this.reqCicked = this.reqCicked.bind(this);
   }
@@ -60,11 +83,14 @@ class Requests extends React.Component {
         <ScrollView style={styles.scrollView}>
           {this.state.list.map(ent => {
             return (
-              <TouchableHighlight onPress={() => this.reqCicked(JSON.stringify(ent))} underlayColor="white">
-              <View style={styles.reqContainer}>
-                <Text>{ent.name}</Text>
-                <Text>Requesting consent for {ent.message}</Text>
-              </View>
+              <TouchableHighlight
+                onPress={() => this.reqCicked(ent)}
+                underlayColor="white"
+              >
+                <View style={styles.reqContainer}>
+                  <Text>{ent.sendername}</Text>
+                  <Text>Requesting consent for {ent.preference}</Text>
+                </View>
               </TouchableHighlight>
             );
           })}

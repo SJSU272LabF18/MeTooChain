@@ -28,27 +28,30 @@ const styles = StyleSheet.create({
     width: "90%",
     borderWidth: 0.4,
     padding: 5,
-    borderRadius:10,
+    borderRadius: 10,
     borderColor: "grey",
     backgroundColor: "white",
-    marginBottom:30,
-    padding:15
+    marginBottom: 30,
+    padding: 15
   },
-  reqText:{
-    fontSize:17,
-   
+  reqText: {
+    fontSize: 17
   }
 });
 
 class UserRequest extends React.Component {
   render() {
     const { navigation } = this.props;
-    const itemId = navigation.getParam('userInfo', 'NO-ID');
-    const itemObj = JSON.parse(itemId);
+
+    const itemId = navigation.getParam("userInfo", "NO-ID");
+    const itemObj = itemId;
     return (
       <View style={styles.body}>
-       <View style={styles.reqContainer}>
-        <Text style={styles.reqText}>{itemObj.name} is requesting consent for a {itemObj.message} . Please Select your preference below!</Text>
+        <View style={styles.reqContainer}>
+          <Text style={styles.reqText}>
+            {itemObj.sendername} is requesting consent for a{" "}
+            {itemObj.preference} . Please Select your preference below!
+          </Text>
         </View>
         <View style={styles.btn}>
           <Button
@@ -67,7 +70,6 @@ class UserRequest extends React.Component {
               this.props.navigation.navigate({ routeName: "" });
             }}
           />
-        
         </View>
         <View style={styles.btn}>
           <Button
@@ -77,7 +79,6 @@ class UserRequest extends React.Component {
               this.props.navigation.navigate({ routeName: "" });
             }}
           />
-        
         </View>
       </View>
     );

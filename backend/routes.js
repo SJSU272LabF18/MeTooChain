@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const Image = require("./controllers/images");
 const userlogin = require("./controllers/login");
+const requests = require("./controllers/getrequests");
 
 router.get("/", Image.test);
 router.get("/accounts", Image.accounts);
@@ -31,6 +32,11 @@ router.get("/getfile/:hash", Image.getFile);
 router.post("/login", function(req, res) {
   console.log("Inside login route", req.body);
   userlogin.login(req, res);
+});
+
+router.get("/requests", function(req, res) {
+  console.log("Inside requests route");
+  requests.getrequests(req, res);
 });
 
 module.exports = router;
