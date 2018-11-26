@@ -1,5 +1,11 @@
 import React, { Fragment } from "react";
-import { View, Text, Button, StyleSheet, ScrollView } from "react-native";
+import {Alert, View, Text, Button, StyleSheet, ScrollView } from "react-native";
+import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
+var radio_props = [
+    {label: 'First Base - You are ready to go on a Date', value: 0 },
+    {label: 'Second Base - Open to some casual intimacy', value: 1 },
+    {label: 'Third Base - Ready to go  distance', value: 2 }
+  ];
 
 const styles = StyleSheet.create({
   body: {
@@ -39,12 +45,12 @@ const styles = StyleSheet.create({
   }
 });
 
-class UserRequest extends React.Component {
+class ModifyConsent extends React.Component {
   render() {
     const { navigation } = this.props;
 
-    const itemId = navigation.getParam("userInfo", "NO-ID");
-    const itemObj = itemId;
+    const itemId = navigation.getParam("userInformation", "NO-ID");
+    const itemObj = JSON.parse(itemId);
     return (
       <View style={styles.body}>
         <View style={styles.reqContainer}>
@@ -53,32 +59,17 @@ class UserRequest extends React.Component {
             {itemObj.preference} . Please Select your preference below!
           </Text>
         </View>
-        <View style={styles.btn}>
-          <Button
-            color="#384499"
-            title="Give Consent"
-            onPress={() => {
-              this.props.navigation.navigate("ContractConfirmation",{
-                contractConfirm:JSON.stringify(itemObj)
-              });
-            }}
-          />
+        <View style={styles.reqContainer}>
+        <RadioForm
+          radio_props={radio_props}
+          initial={0}
+          onPress={(value) => {this.setState({value:value})}}
+        />
         </View>
         <View style={styles.btn}>
           <Button
             color="#384499"
-            title="Modify Consent"
-            onPress={() => {
-              this.props.navigation.navigate("ModifyConsent",{
-                userInformation:JSON.stringify(itemObj)
-              });
-            }}
-          />
-        </View>
-        <View style={styles.btn}>
-          <Button
-            color="#384499"
-            title="Deny Consent"
+            title="Send Modified Consent"
             onPress={() => {
               this.props.navigation.navigate({ routeName: "" });
             }}
@@ -89,4 +80,4 @@ class UserRequest extends React.Component {
   }
 }
 
-export default UserRequest;
+export default ModifyConsent;

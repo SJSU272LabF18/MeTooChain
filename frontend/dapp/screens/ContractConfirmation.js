@@ -39,54 +39,31 @@ const styles = StyleSheet.create({
   }
 });
 
-class UserRequest extends React.Component {
+class ContractConfirmation extends React.Component {
   render() {
     const { navigation } = this.props;
 
-    const itemId = navigation.getParam("userInfo", "NO-ID");
-    const itemObj = itemId;
+    const itemId = navigation.getParam("contractConfirm", "NO-ID");
+    const itemObj = JSON.parse(itemId);
     return (
       <View style={styles.body}>
         <View style={styles.reqContainer}>
           <Text style={styles.reqText}>
-            {itemObj.sendername} is requesting consent for a{" "}
-            {itemObj.preference} . Please Select your preference below!
+         A trustworthy contract has been established with {itemObj.sendername} for {itemObj.preference}
           </Text>
         </View>
         <View style={styles.btn}>
           <Button
             color="#384499"
-            title="Give Consent"
-            onPress={() => {
-              this.props.navigation.navigate("ContractConfirmation",{
-                contractConfirm:JSON.stringify(itemObj)
-              });
-            }}
-          />
-        </View>
-        <View style={styles.btn}>
-          <Button
-            color="#384499"
-            title="Modify Consent"
-            onPress={() => {
-              this.props.navigation.navigate("ModifyConsent",{
-                userInformation:JSON.stringify(itemObj)
-              });
-            }}
-          />
-        </View>
-        <View style={styles.btn}>
-          <Button
-            color="#384499"
-            title="Deny Consent"
+            title="Back"
             onPress={() => {
               this.props.navigation.navigate({ routeName: "" });
             }}
           />
         </View>
-      </View>
+        </View>
     );
   }
 }
 
-export default UserRequest;
+export default ContractConfirmation;

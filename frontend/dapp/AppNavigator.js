@@ -7,6 +7,8 @@ import App from "./App";
 import LoginScreen from './screens/LoginScreen';
 import LoginDetails from './screens/LoginDetails';
 import UserRequest from './screens/UserRequest';
+import ModifyConsent from './screens/ModifyConsent';
+import ContractConfirmation from './screens/ContractConfirmation';
 
 
 const AppNavigator = createStackNavigator({
@@ -25,8 +27,14 @@ const AppNavigator = createStackNavigator({
   userRequest:{
    screen:UserRequest 
   },
+  ContractConfirmation:{
+    screen:ContractConfirmation
+  },
   Dapp:{
     screen: App
+  },
+  ModifyConsent:{
+    screen:ModifyConsent
   }
 }, {
     headerMode: 'none',
