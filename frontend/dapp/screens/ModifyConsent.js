@@ -70,8 +70,13 @@ class ModifyConsent extends React.Component {
           <Button
             color="#384499"
             title="Send Modified Consent"
+            // onPress={() => {
+            //   this.props.navigation.navigate({ routeName: "ContractConfirmation" });
+            // }}
             onPress={() => {
-              this.props.navigation.navigate({ routeName: "" });
+              this.props.navigation.navigate("ContractConfirmation",{
+                contractConfirm:JSON.stringify(itemObj)
+              });
             }}
           />
         </View>
