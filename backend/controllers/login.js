@@ -21,7 +21,7 @@ exports.login = function(req, res) {
         // var password = req.body.password;
         const db = client.db(dbName);
         console.log("Database Connected");
-        db.collection("users").findOne({ username: username }, function(
+        db.collection("users").find({ "user.username": username }, function(
           findErr,
           result
         ) {
@@ -32,7 +32,7 @@ exports.login = function(req, res) {
             res.end("Invalid Credentials");
             throw findErr;
           } else {
-            console.log("result is", result);
+            console.log("result is", result.data);
             console.log("USERNME", username);
             res.status(200).send({ message: "Succesfull login" });
             //     res.end("Successful Login");

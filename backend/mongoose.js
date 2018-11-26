@@ -11,6 +11,6 @@ mongoose
 
     options
   )
-  .then(console.log("mlabs connected"));
+  .then(console.log("mongodb connected"));
 
 module.exports = mongoose;

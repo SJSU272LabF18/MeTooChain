@@ -67,26 +67,23 @@ class Requests extends React.Component {
       }
     ]
   };
-  render() {
-    userSignup = () => {
-      fetch("http://10.0.0.216:5000/login", {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        }
-      })
-        .then(response => response.json())
-        .then(responseData => {
-          // this._onValueChange(STORAGE_KEY, responseData.id_token),
-          AlertAndroid.alert(
-            "Signup Success!",
-            "Click the button to get a Chuck Norris quote!"
-          );
-        })
-        .done();
-    };
 
+  componentDidMount() {
+    fetch("http://10.227.95.38:5000/requests", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        console.log("response is", responseData.value[0].requests);
+        this.setState({ list: responseData.value[0].requests });
+      })
+      .done();
+  }
+  render() {
     return (
       <View style={styles.body}>
         <Text>Details Screen</Text>
@@ -94,8 +91,8 @@ class Requests extends React.Component {
           {this.state.list.map(ent => {
             return (
               <View style={styles.reqContainer}>
-                <Text>{ent.name}</Text>
-                <Text>{ent.message}</Text>
+                <Text>{ent.sendername}</Text>
+                <Text>{ent.preference}</Text>
               </View>
             );
           })}
