@@ -53,7 +53,7 @@ class Requests extends React.Component {
   };
 
   componentDidMount() {
-    fetch("http://10.227.95.38:5000/requests", {
+    fetch("http://10.0.0.216:5000/requests", {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -84,7 +84,7 @@ class Requests extends React.Component {
           {this.state.list.map(ent => {
             return (
               <TouchableHighlight
-                onPress={() => this.reqCicked(JSON.stringify(ent))}
+                onPress={() => this.reqCicked(ent)}
                 underlayColor="white"
               >
                 <View style={styles.reqContainer}>

@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 
 class LoginDetails extends React.Component {
   userSignup = () => {
-    fetch("http://10.227.95.38:5000/login", {
+    fetch("http://10.0.0.216:5000/login", {
       method: "POST",
       headers: {
         Accept: "application/json",
