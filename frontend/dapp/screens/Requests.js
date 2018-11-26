@@ -1,5 +1,13 @@
 import React, { Fragment } from "react";
-import { View, Text, Button, StyleSheet, ScrollView } from "react-native";
+import {
+  Alert,
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  ScrollView,
+  TouchableHighlight
+} from "react-native";
 
 const styles = StyleSheet.create({
   body: {
@@ -31,39 +39,15 @@ class Requests extends React.Component {
     list: [
       {
         name: "John Doe",
-        message: "Requesting consent for a fling"
+        message: "fling"
       },
       {
         name: "John Cho",
-        message: "Requesting consent for a casual date"
+        message: "casual date"
       },
       {
         name: "John Abraham",
-        message: "Requesting consent for a flirting"
-      },
-      {
-        name: "John Doe",
-        message: "Requesting consent for a fling"
-      },
-      {
-        name: "John Cho",
-        message: "Requesting consent for a casual date"
-      },
-      {
-        name: "John Abraham",
-        message: "Requesting consent for a flirting"
-      },
-      {
-        name: "John Doe",
-        message: "Requesting consent for a fling"
-      },
-      {
-        name: "John Cho",
-        message: "Requesting consent for a casual date"
-      },
-      {
-        name: "John Abraham",
-        message: "Requesting consent for a flirting"
+        message: "flirting"
       }
     ]
   };
@@ -83,6 +67,15 @@ class Requests extends React.Component {
       })
       .done();
   }
+  reqCicked = usr => {
+    this.props.navigation.navigate("userRequest", {
+      userInfo: usr
+    });
+  };
+  constructor(props) {
+    super(props);
+    this.reqCicked = this.reqCicked.bind(this);
+  }
   render() {
     return (
       <View style={styles.body}>
@@ -90,10 +83,15 @@ class Requests extends React.Component {
         <ScrollView style={styles.scrollView}>
           {this.state.list.map(ent => {
             return (
-              <View style={styles.reqContainer}>
-                <Text>{ent.sendername}</Text>
-                <Text>{ent.preference}</Text>
-              </View>
+              <TouchableHighlight
+                onPress={() => this.reqCicked(JSON.stringify(ent))}
+                underlayColor="white"
+              >
+                <View style={styles.reqContainer}>
+                  <Text>{ent.sendername}</Text>
+                  <Text>Requesting consent for {ent.preference}</Text>
+                </View>
+              </TouchableHighlight>
             );
           })}
         </ScrollView>

@@ -6,6 +6,7 @@ import Requests from './screens/Requests';
 import App from "./App";
 import LoginScreen from './screens/LoginScreen';
 import LoginDetails from './screens/LoginDetails';
+import UserRequest from './screens/UserRequest';
 
 
 const AppNavigator = createStackNavigator({
@@ -20,6 +21,9 @@ const AppNavigator = createStackNavigator({
   },
   LoginDetails:{
     screen:LoginDetails
+  },
+  userRequest:{
+   screen:UserRequest 
   },
   Dapp:{
     screen: App
