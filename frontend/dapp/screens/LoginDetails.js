@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 
 class LoginDetails extends React.Component {
   userSignup = () => {
-    fetch("http://10.0.0.216:5000/login", {
+    fetch("http://10.240.46.121:5000/login", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -61,8 +61,7 @@ class LoginDetails extends React.Component {
         //   "Signup Success!",
         //   "Click the button to get a Chuck Norris quote!"
         // );
-        console.log(this.props);
-        this.props.navigation.navigate({ routeName: "Details" });
+        this.props.navigation.navigate({ routeName: "Requests" });
       })
       .done();
   };
@@ -83,9 +82,7 @@ class LoginDetails extends React.Component {
           <Button
             color="#384499"
             title="Login"
-            onPress={() => {
-              this.props.navigation.navigate({ routeName: "Requests" });
-            }}
+            onPress={this.userSignup}
           />
         </View>
       </View>

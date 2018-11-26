@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { View, Text, Button, StyleSheet, ScrollView } from "react-native";
+import {Alert, View, Text, Button, StyleSheet, ScrollView,TouchableHighlight } from "react-native";
 
 const styles = StyleSheet.create({
   body: {
@@ -31,72 +31,41 @@ class Requests extends React.Component {
     list: [
       {
         name: "John Doe",
-        message: "Requesting consent for a fling"
+        message: "fling"
       },
       {
         name: "John Cho",
-        message: "Requesting consent for a casual date"
+        message: "casual date"
       },
       {
         name: "John Abraham",
-        message: "Requesting consent for a flirting"
-      },
-      {
-        name: "John Doe",
-        message: "Requesting consent for a fling"
-      },
-      {
-        name: "John Cho",
-        message: "Requesting consent for a casual date"
-      },
-      {
-        name: "John Abraham",
-        message: "Requesting consent for a flirting"
-      },
-      {
-        name: "John Doe",
-        message: "Requesting consent for a fling"
-      },
-      {
-        name: "John Cho",
-        message: "Requesting consent for a casual date"
-      },
-      {
-        name: "John Abraham",
-        message: "Requesting consent for a flirting"
+        message: "flirting"
       }
+      
     ]
   };
+  reqCicked=(usr)=>{
+    this.props.navigation.navigate('userRequest',{
+      userInfo:usr
+    });
+  }
+  constructor(props){
+    super(props);
+    this.reqCicked = this.reqCicked.bind(this);
+  }
   render() {
-    userSignup = () => {
-      fetch("http://10.0.0.216:5000/login", {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        }
-      })
-        .then(response => response.json())
-        .then(responseData => {
-          // this._onValueChange(STORAGE_KEY, responseData.id_token),
-          AlertAndroid.alert(
-            "Signup Success!",
-            "Click the button to get a Chuck Norris quote!"
-          );
-        })
-        .done();
-    };
-
     return (
       <View style={styles.body}>
         <Text>Details Screen</Text>
         <ScrollView style={styles.scrollView}>
           {this.state.list.map(ent => {
             return (
+              <TouchableHighlight onPress={() => this.reqCicked(JSON.stringify(ent))} underlayColor="white">
               <View style={styles.reqContainer}>
                 <Text>{ent.name}</Text>
-                <Text>{ent.message}</Text>
+                <Text>Requesting consent for {ent.message}</Text>
               </View>
+              </TouchableHighlight>
             );
           })}
         </ScrollView>
