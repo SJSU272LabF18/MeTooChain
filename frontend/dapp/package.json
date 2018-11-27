@@ -17,6 +17,7 @@
     "react-native-gesture-handler": "^1.0.9",
     "react-native-image-picker": "^0.27.1",
     "react-native-simple-radio-button": "^2.7.3",
+    "react-native-vector-icons": "^6.1.0",
     "react-navigation": "^3.0.0"
   },
   "devDependencies": {

@@ -44,10 +44,15 @@ const styles = StyleSheet.create({
 });
 
 class LoginDetails extends React.Component {
+<<<<<<< HEAD
   userSignup = () => {
     const url = USERCONSTANTS.ROOTURL + "login";
     Alert.alert(url);
     fetch(url, {
+=======
+   userSignup = () => {
+    fetch("http://10.236.254.230:5000/login", {
+>>>>>>> master
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -66,12 +71,21 @@ class LoginDetails extends React.Component {
         //   "Click the button to get a Chuck Norris quote!"
         // );
         console.log(this.props);
+<<<<<<< HEAD
         try {
           AsyncStorage.setItem("username", "Sojan" + " " + "Mathew").then(
             this.props.navigation.navigate({ routeName: "Requests" })
           );
         } catch (e) {
           Alert.alert(e);
+=======
+        try{
+         AsyncStorage.setItem('username', 'Sojan'+' '+'Mathew').then(
+          this.props.navigation.navigate({ routeName: "TabNavigator" })
+         );
+        }catch(e){
+        Alert.alert(e);
+>>>>>>> master
         }
       })
       .done();

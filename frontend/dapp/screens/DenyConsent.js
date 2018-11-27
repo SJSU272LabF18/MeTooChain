@@ -57,7 +57,7 @@ class DenyConsent extends React.Component {
             color="#384499"
             title="Back"
             onPress={() => {
-              this.props.navigation.navigate({ routeName: "Requests" });
+              this.props.navigation.navigate({ routeName: "TabNavigator" });
             }}
           />
         </View>
