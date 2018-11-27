@@ -48,7 +48,7 @@ class UserRequest extends React.Component {
       preference:itemObj.preference
     };
   
-    fetch("http://10.250.157.76:5000/confirmContract", {
+    fetch("http://10.236.254.230:5000/confirmContract", {
       method: "POST",
       headers: {
         Accept: "application/json",

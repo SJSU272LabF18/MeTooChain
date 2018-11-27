@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
-import HomeScreen from "./screens/HomeScreen";
+import HomeScreen from "./screens/TabNavigator";
 import Requests from './screens/Requests';
 import App from "./App";
 import LoginScreen from './screens/LoginScreen';
@@ -10,6 +10,7 @@ import UserRequest from './screens/UserRequest';
 import ModifyConsent from './screens/ModifyConsent';
 import ContractConfirmation from './screens/ContractConfirmation';
 import DenyConsent from './screens/DenyConsent';
+import TabNavigator from './screens/TabNavigator';
 import Browse from './screens/Browse';
 
 
@@ -43,6 +44,9 @@ const AppNavigator = createStackNavigator({
   },
   ModifyConsent:{
     screen:ModifyConsent
+  },
+  TabNavigator:{
+    screen:TabNavigator
   }
 }, {
     headerMode: 'none',
