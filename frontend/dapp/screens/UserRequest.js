@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#eb3b5a"
+    backgroundColor: "#ededed"
   },
   btn: {
     width: "90%",
@@ -26,13 +26,19 @@ const styles = StyleSheet.create({
   },
   reqContainer: {
     width: "90%",
-    borderWidth: 0.4,
-    padding: 5,
-    borderRadius: 10,
+    padding: 15,
     borderColor: "grey",
     backgroundColor: "white",
     marginBottom: 30,
-    padding: 15
+    padding: 15,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 6,
   },
   reqText: {
     fontSize: 17
@@ -48,7 +54,7 @@ class UserRequest extends React.Component {
       preference:itemObj.preference
     };
   
-    fetch("http://10.236.254.230:5000/confirmContract", {
+    fetch("http://10.250.157.76:5000/confirmContract", {
       method: "POST",
       headers: {
         Accept: "application/json",
