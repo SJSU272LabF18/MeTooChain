@@ -5,39 +5,16 @@ exports.getrequests = function(req, res) {
     {
       $match: {
         "user.username": {
+          //  $eq: req.body.username
           $eq: "sojan"
         }
-      }
-    },
-    {
-      $project: {
-        requests: "$requests",
-        _id: 0
-      }
-    },
-
-    { $unwind: "$requests" },
-    {
-      $match: {
-        "requests.status": {
-          $ne: 3
-        }
-      }
-    },
-    {
-      $group: { requests: { $push: "$requests" } },
-
-      $group: {
-        _id: "_id",
-
-        requests: { $push: "$requests" }
       }
     }
   ];
   var promise = User.aggregate(pipeline).exec();
   promise
     .then(function(data) {
-      console.log("requests  data-");
+      console.log("get breach  data-");
       console.log(data);
       results.value = data;
       if (data) {

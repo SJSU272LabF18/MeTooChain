@@ -1,5 +1,14 @@
 import React, { Fragment } from "react";
-import { View, Text, Button, StyleSheet, ScrollView,AsyncStorage,Alert } from "react-native";
+import * as USERCONSTANTS from "../Helpers/helper";
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  ScrollView,
+  AsyncStorage,
+  Alert
+} from "react-native";
 
 const styles = StyleSheet.create({
   body: {
@@ -46,30 +55,55 @@ const styles = StyleSheet.create({
 });
 
 class UserRequest extends React.Component {
-  generateConsentContract=async (itemObj)=>{
-    const userName =await AsyncStorage.getItem('username');
-    const obj={
-      user:userName,
-      sendername:itemObj.sendername,
-      preference:itemObj.preference
+  generateConsentContract = async itemObj => {
+    const url1 = USERCONSTANTS.ROOTURL + "confirmContract";
+    const url2 = USERCONSTANTS.ROOTURL + "giveconsent";
+    const userName = await AsyncStorage.getItem("username");
+    const obj = {
+      user: userName,
+      sendername: itemObj.sendername,
+      preference: itemObj.preference
     };
+<<<<<<< HEAD
   
     fetch("http://10.250.157.76:5000/confirmContract", {
+=======
+
+    fetch(url1, {
+>>>>>>> master
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
       body: JSON.stringify(obj)
-    }) .then(response => response.json())
-    .then(responseData => {
-     // Alert.alert(JSON.stringify(responseData));
-      this.props.navigation.navigate("ContractConfirmation",{
-        contractConfirm:JSON.stringify(itemObj)
-      });
     })
-    
-  }
+      .then(response => response.json())
+      .then(responseData => {
+        //  Alert.alert("hi");
+        fetch(url2, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(obj)
+        })
+          .then(response => response.json())
+          .then(responseData => {
+            console.log("inside consent route");
+            // Alert.alert(JSON.stringify(responseData));
+            this.props.navigation.navigate("ContractConfirmation", {
+              contractConfirm: JSON.stringify(itemObj)
+            });
+          });
+
+        //  // Alert.alert(JSON.stringify(responseData));
+        //   this.props.navigation.navigate("ContractConfirmation",{
+        //     contractConfirm:JSON.stringify(itemObj)
+        //   });
+      });
+  };
   render() {
     const { navigation } = this.props;
 
@@ -88,7 +122,7 @@ class UserRequest extends React.Component {
             color="#384499"
             title="Give Consent"
             onPress={() => {
-             this.generateConsentContract(itemObj);
+              this.generateConsentContract(itemObj);
             }}
           />
         </View>
@@ -97,8 +131,8 @@ class UserRequest extends React.Component {
             color="#384499"
             title="Modify Consent"
             onPress={() => {
-              this.props.navigation.navigate("ModifyConsent",{
-                userInformation:JSON.stringify(itemObj)
+              this.props.navigation.navigate("ModifyConsent", {
+                userInformation: JSON.stringify(itemObj)
               });
             }}
           />
@@ -108,8 +142,8 @@ class UserRequest extends React.Component {
             color="#384499"
             title="Deny Consent"
             onPress={() => {
-              this.props.navigation.navigate("DenyConsent" ,{
-                DenyCon:JSON.stringify(itemObj)
+              this.props.navigation.navigate("DenyConsent", {
+                DenyCon: JSON.stringify(itemObj)
               });
             }}
           />

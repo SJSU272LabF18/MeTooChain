@@ -1,7 +1,8 @@
 const IpfsAPI = require("ipfs-api");
 // connect to ipfs daemon API server
 // const ipfs = IpfsAPI('localhost', '5001', { protocol: 'http' })
-
+const filepath =
+  "/Users/mathewsojan/SoftwareEngineering/CMPE273/Homeaway/Backend/public/images/";
 const ipfs = new IpfsAPI({
   host: "ipfs.infura.io",
   port: 5001,
@@ -23,10 +24,64 @@ const SavingContract = new web3.eth.Contract(
   abi,
   "0xb1caf625d9d29421dfd8dae4a7a9083b4175f80a"
 );
-// const Image = require("../models/images");
 
 const MAX_SIZE = 52428800;
+/*********************** */
+// var storagecontracts = multer.diskStorage({
+//   destination: function(req, file, callback) {
+//     console.log("req.session.user is", JSON.stringify(req.body.user));
+//     callback(null, createDirectory(req.body.user));
+//   },
+//   filename: function(req, file, callback) {
+//     console.log("req", req.body);
+//     callback(null, file.originalname);
+//   }
+// });
 
+// var rootDirectory = "public/contracts/";
+
+// exports.uploadcontract = multer({
+//   storage: storagecontracts
+// });
+
+// function createDirectory(user) {
+//   if (!fs.existsSync(rootDirectory)) {
+//     fs.mkdirSync(rootDirectory);
+//   }
+//   let directory = rootDirectory + user;
+//   if (!fs.existsSync(directory)) {
+//     fs.mkdirSync(directory);
+//   }
+//   return directory;
+// }
+// var startPath = filepath + req.body.user;
+// if (req.body.id) {
+//   var files = fs.readdirSync(startPath);
+//   console.log("files", files);
+
+//   console.log(files.length);
+
+//   fs.readFile(startPath + "/" + files[0], function(err, content) {
+//     console.log("###contract:", content);
+//     console.log("###filename:", files[0]);
+//     if (err) {
+//       res.writeHead(400, { "Content-type": "text/html" });
+//       console.log(err);
+//       res.end("No such image");
+//     } else {
+//       let base64Image = new Buffer(content, "binary").toString("base64");
+
+//       console.log("###image in node");
+
+//       res.status(200).send({ propid: req.body.id, img: base64Image });
+//     }
+//   });
+// } else {
+//   res.statusMessage = "invalid session";
+//   res.status(401).end();
+// }
+
+// /****************************************************** */
 const storage = multer.diskStorage({
   destination(req, file, cb) {
     cb(null, path.join(__dirname, "../uploads"));
@@ -38,38 +93,27 @@ const storage = multer.diskStorage({
 
 exports.upload = multer({ storage, limits: { fieldSize: 25 * 1024 * 1024 } });
 exports.uploadFile = async (req, res, next) => {
-    console.log("Hello World uploadFile");
-    // if (mime.split("/")[0] !== "image") {
-    //   fs.unlink(req.file.path);
-  
-    //   return res.status(422).json({
-    //     error: "File needs to be an image."
-    //   });
-    // }
-  console.log(req.body);
-    // if (fileSize > MAX_SIZE) {
-    //   fs.unlink(req.file.path);
-  
-    //   return res.status(422).json({
-    //     error: `Image needs to be smaller than ${MAX_SIZE} bytes.`
-    //   });
-    // }
-  
-   // const data = fs.readFileSync(req.file.path);
+  console.log("Hello World uploadFile");
 
-   //generate file here
-   var writeStream = fs.createWriteStream(req.body.user+".txt");
-   writeStream.write("Contract Details \n");
-   writeStream.write("This is a trustworthy,Immutable contract between "+req.body.user+" and "+req.body.sendername+"\n");
-   writeStream.write("Contract Details \n"+req.body.preference);
-   writeStream.end();
-   //end
-   //const data = fs.readFileSync(req.file.path);
-   fs.readFile(req.body.user+".txt", (err, data)=> {
+  console.log(req.body);
+  var writeStream = fs.createWriteStream(req.body.user + ".txt");
+  writeStream.write("Contract Details \n");
+  writeStream.write(
+    "This is a trustworthy,Immutable contract between " +
+      req.body.user +
+      " and " +
+      req.body.sendername +
+      "\n"
+  );
+  writeStream.write("Contract Details \n" + req.body.preference);
+  writeStream.end();
+  //end
+  //const data = fs.readFileSync(req.file.path);
+  fs.readFile(req.body.user + ".txt", (err, data) => {
     console.log("inside readfile error");
-    console.log(data)
-    const obj={
-      data:data
+    console.log(data);
+    const obj = {
+      data: data
     };
 
     return ipfs
@@ -83,48 +127,45 @@ exports.uploadFile = async (req, res, next) => {
         }
       })
       .catch(err => {
-        console.log("inside ipfs error")
+        console.log("inside ipfs error");
         console.log(err.message);
         res.status(500).send(err.message);
       });
-});
-   
-  };
-  
-exports.postData = async (req, res, next) => {
-    try {
-      const { hash } = req.data[0];
-      const accounts = await web3.eth.getAccounts();
-  
-      const resp = await SavingContract.methods.saveHash(hash).send({
-        from: accounts[0]
-      });
-      console.log("Hello World");
-      console.log(JSON.stringify(resp));
-      const data = Object.assign({ ipfsHash: hash }, resp);
-      req.data = data;
-  
-      next();
-    } catch (err) {
-      console.log(err.message);
-      res.status(500).send(err.message);
-    }
-  };
-  exports.create = async (req, res) => {
-    try {
-      const data = {
-        label: req.body.label,
-        ipfsHash: req.data.ipfsHash,
-        ipfsAddress: `https://gateway.ipfs.io/ipfs/${req.data.ipfsHash}`,
-        transactionHash: req.data.ipfsHash,
-        blockHash: req.data.blockHash
-      };
-      const resp = await Image.create(data);
-      res.send(resp);
-    } catch (err) {
-      res.status(500).send(err.message);
-    }
-  };
-exports.confirmContract=()=>{
+  });
+};
 
-}
+exports.postData = async (req, res, next) => {
+  try {
+    const { hash } = req.data[0];
+    const accounts = await web3.eth.getAccounts();
+
+    const resp = await SavingContract.methods.saveHash(hash).send({
+      from: accounts[0]
+    });
+    console.log("Hello World");
+    console.log(JSON.stringify(resp));
+    const data = Object.assign({ ipfsHash: hash }, resp);
+    req.data = data;
+
+    next();
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send(err.message);
+  }
+};
+exports.create = async (req, res) => {
+  try {
+    const data = {
+      label: req.body.label,
+      ipfsHash: req.data.ipfsHash,
+      ipfsAddress: `https://gateway.ipfs.io/ipfs/${req.data.ipfsHash}`,
+      transactionHash: req.data.ipfsHash,
+      blockHash: req.data.blockHash
+    };
+    const resp = await Image.create(data);
+    res.send(resp);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+exports.confirmContract = () => {};

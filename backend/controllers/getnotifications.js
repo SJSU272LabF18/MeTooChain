@@ -1,43 +1,34 @@
 var User = require("../models/user");
-exports.getrequests = function(req, res) {
+exports.getnotifications = function(req, res) {
   var results = {};
   var pipeline = [
     {
       $match: {
         "user.username": {
-          $eq: "sojan"
+          $eq: "john doe"
         }
       }
     },
     {
       $project: {
-        requests: "$requests",
+        sentrequests: "$sentrequests",
         _id: 0
       }
     },
 
-    { $unwind: "$requests" },
+    { $unwind: "$sentrequests" },
     {
       $match: {
-        "requests.status": {
-          $ne: 3
+        "sentrequests.status": {
+          $eq: 3
         }
-      }
-    },
-    {
-      $group: { requests: { $push: "$requests" } },
-
-      $group: {
-        _id: "_id",
-
-        requests: { $push: "$requests" }
       }
     }
   ];
   var promise = User.aggregate(pipeline).exec();
   promise
     .then(function(data) {
-      console.log("requests  data-");
+      console.log("notifications  data-");
       console.log(data);
       results.value = data;
       if (data) {

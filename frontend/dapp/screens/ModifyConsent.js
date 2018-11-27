@@ -1,11 +1,23 @@
 import React, { Fragment } from "react";
-import {Alert, View, Text, Button, StyleSheet, ScrollView } from "react-native";
-import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
+import * as USERCONSTANTS from "../Helpers/helper";
+import {
+  Alert,
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  ScrollView
+} from "react-native";
+import RadioForm, {
+  RadioButton,
+  RadioButtonInput,
+  RadioButtonLabel
+} from "react-native-simple-radio-button";
 var radio_props = [
-    {label: 'First Base - You are ready to go on a Date', value: 0 },
-    {label: 'Second Base - Open to some casual intimacy', value: 1 },
-    {label: 'Third Base - Ready to go  distance', value: 2 }
-  ];
+  { label: "First Base - You are ready to go on a Date", value: 0 },
+  { label: "Second Base - Open to some casual intimacy", value: 1 },
+  { label: "Third Base - Ready to go  distance", value: 2 }
+];
 
 const styles = StyleSheet.create({
   body: {
@@ -60,11 +72,13 @@ class ModifyConsent extends React.Component {
           </Text>
         </View>
         <View style={styles.reqContainer}>
-        <RadioForm
-          radio_props={radio_props}
-          initial={0}
-          onPress={(value) => {this.setState({value:value})}}
-        />
+          <RadioForm
+            radio_props={radio_props}
+            initial={0}
+            onPress={value => {
+              this.setState({ value: value });
+            }}
+          />
         </View>
         <View style={styles.btn}>
           <Button
@@ -74,8 +88,8 @@ class ModifyConsent extends React.Component {
             //   this.props.navigation.navigate({ routeName: "ContractConfirmation" });
             // }}
             onPress={() => {
-              this.props.navigation.navigate("ContractConfirmation",{
-                contractConfirm:JSON.stringify(itemObj)
+              this.props.navigation.navigate("ContractConfirmation", {
+                contractConfirm: JSON.stringify(itemObj)
               });
             }}
           />

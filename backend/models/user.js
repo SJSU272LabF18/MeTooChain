@@ -8,12 +8,29 @@ var UserSchema = new Schema({
 var requestSchema = new Schema({
   sendername: { type: String, trim: true },
   preference: { type: String, trim: true },
-  level: { type: Number, trim: true }
+  level: { type: Number, trim: true },
+  status: { type: Number, trim: true } ////////  3. accepted/Denied
 });
-
+var sentRequestsSchema = new Schema({
+  receivername: { type: String, trim: true },
+  preference: { type: String, trim: true },
+  level: { type: Number, trim: true },
+  status: { type: Number, trim: true } ///// 1.pending
+});
+var filedBreach = new Schema({
+  name: { type: String, trim: true },
+  message: { type: String, trim: true }
+});
+var receivedBreach = new Schema({
+  name: { type: String, trim: true },
+  message: { type: String, trim: true }
+});
 var UserSchema = new Schema({
   user: { type: UserSchema },
-  requests: [{ type: requestSchema }]
+  requests: [{ type: requestSchema }],
+  sentrequests: [{ type: sentRequestsSchema }],
+  filedbreach: [{ type: filedBreach }],
+  receivedBreach: [{ type: receivedBreach }]
 });
 
 // module.exports = mongoose.model("users", UserSchema);
