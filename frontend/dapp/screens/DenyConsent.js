@@ -39,17 +39,17 @@ const styles = StyleSheet.create({
   }
 });
 
-class ContractConfirmation extends React.Component {
+class DenyConsent extends React.Component {
   render() {
     const { navigation } = this.props;
 
-    const itemId = navigation.getParam("contractConfirm", "NO-ID");
+    const itemId = navigation.getParam("DenyCon", "NO-ID");
     const itemObj = JSON.parse(itemId);
     return (
       <View style={styles.body}>
         <View style={styles.reqContainer}>
           <Text style={styles.reqText}>
-         A trustworthy contract has been established with {itemObj.sendername} for {itemObj.preference}
+            Consent has been denied for {itemObj.sendername} by {itemObj.preference}
           </Text>
         </View>
         <View style={styles.btn}>
@@ -66,4 +66,4 @@ class ContractConfirmation extends React.Component {
   }
 }
 
-export default ContractConfirmation;
+export default DenyConsent;

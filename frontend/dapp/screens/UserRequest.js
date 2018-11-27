@@ -102,7 +102,9 @@ class UserRequest extends React.Component {
             color="#384499"
             title="Deny Consent"
             onPress={() => {
-              this.props.navigation.navigate({ routeName: "" });
+              this.props.navigation.navigate("DenyConsent" ,{
+                DenyCon:JSON.stringify(itemObj)
+              });
             }}
           />
         </View>
