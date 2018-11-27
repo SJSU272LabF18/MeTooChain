@@ -30,7 +30,11 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     width: "90%",
-    height: "50%"
+    // height: "30%"
+  },
+  TextLbl: {
+    fontWeight: "bold",
+    fontSize: 20,
   }
 });
 
@@ -77,30 +81,40 @@ class Requests extends React.Component {
     this.reqCicked = this.reqCicked.bind(this);
   }
   render() {
+    const { navigation } = this.props;
+    const itemId = navigation.getParam("userInfo", "NO-ID");
+    const itemObj = itemId;
     return (
       <View style={styles.body}>
-        <Text>Details Screen</Text>
-        <ScrollView style={styles.scrollView}>
-          {this.state.list.map(ent => {
-            return (
-              <TouchableHighlight
-                onPress={() => this.reqCicked(ent)}
-                underlayColor="white"
-              >
-                <View style={styles.reqContainer}>
-                  <Text>{ent.sendername}</Text>
-                  <Text>Requesting consent for {ent.preference}</Text>
-                </View>
-              </TouchableHighlight>
-            );
-          })}
-        </ScrollView>
+        {/* <Text>Pending Requests</Text> */}
+        <Text style={styles.TextLbl}>Pending Requests</Text>
+          <ScrollView style={styles.scrollView}>
+            {this.state.list.map(ent => {
+              return (
+                <TouchableHighlight
+                  onPress={() => this.reqCicked(ent)}
+                  underlayColor="white"
+                >
+                  <View style={styles.reqContainer}>
+                    <Text>{ent.sendername}</Text>
+                    <Text>Requesting consent for {ent.preference}</Text>
+                  </View>
+                </TouchableHighlight>
+              );
+            })}
+          </ScrollView>
+          <Text style={styles.TextLbl}>Explore</Text>
         <View style={styles.btn}>
           <Button
             color="#384499"
-            title="Request Consent"
+            title="Browse"
+            // onPress={() => {
+            //   this.props.navigation.navigate({ routeName: "Browse" });
+            // }}
             onPress={() => {
-              this.props.navigation.navigate({ routeName: "" });
+              this.props.navigation.navigate("Browse",{
+                browseinfo: ""
+              });
             }}
           />
         </View>

@@ -11,6 +11,7 @@ import ModifyConsent from './screens/ModifyConsent';
 import ContractConfirmation from './screens/ContractConfirmation';
 import DenyConsent from './screens/DenyConsent';
 import TabNavigator from './screens/TabNavigator';
+import Browse from './screens/Browse';
 
 
 const AppNavigator = createStackNavigator({
@@ -34,6 +35,9 @@ const AppNavigator = createStackNavigator({
   },
   DenyConsent:{
     screen:DenyConsent
+  },
+  Browse:{
+    screen:Browse
   },
   Dapp:{
     screen: App
