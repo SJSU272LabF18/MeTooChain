@@ -8,6 +8,8 @@ const confirmContract = require("./controllers/confirmContract");
 const consent = require("./controllers/giveconsent");
 const notifications = require("./controllers/getnotifications");
 const signup = require("./controllers/signup");
+const requestconsent = require("./controllers/requestconsent");
+const filebreach = require("./controllers/fileBreach");
 
 router.get("/", Image.test);
 router.get("/accounts", Image.accounts);
@@ -59,6 +61,14 @@ router.post("/giveconsent", function(req, res) {
 router.get("/getnotifications", function(req, res) {
   console.log("Inside notifications route");
   notifications.getnotifications(req, res);
+});
+router.post("/requestconsent", function(req, res) {
+  console.log("Inside request consent route");
+  requestconsent.requestconsent(req, res);
+});
+router.post("/filebreach", function(req, res) {
+  console.log("Inside filebreach route");
+  filebreach.filebreach(req, res);
 });
 
 router.post("/signup", function(req, res) {
