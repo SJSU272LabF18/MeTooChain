@@ -57,7 +57,7 @@ class Requests extends React.Component {
   };
 
   componentDidMount() {
-    fetch("http://10.236.254.230:5000/requests", {
+    fetch("http://10.0.0.102:5000/requests", {
       method: "GET",
       headers: {
         Accept: "application/json",

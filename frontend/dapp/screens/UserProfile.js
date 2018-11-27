@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class UserRequest extends React.Component {
+class UserProfile extends React.Component {
   generateConsentContract=async (itemObj)=>{
     const userName =await AsyncStorage.getItem('username');
     const obj={
@@ -67,7 +67,7 @@ class UserRequest extends React.Component {
   render() {
     const { navigation } = this.props;
 
-    const itemId = navigation.getParam("userInfo", "NO-ID");
+    const itemId = navigation.getParam("profileInfo", "NO-ID");
     const itemObj = itemId;
     return (
       <View style={styles.body}>
@@ -80,24 +80,29 @@ class UserRequest extends React.Component {
         <View style={styles.btn}>
           <Button
             color="#384499"
-            title="Give Consent"
+            title="Request Consent"
+            // onPress={() => {
+            //  this.generateConsentContract(itemObj);
+            // }}
             onPress={() => {
-             this.generateConsentContract(itemObj);
+                this.props.navigation.navigate("",{
+                  userInformation:JSON.stringify(itemObj)
+                });
             }}
           />
         </View>
         <View style={styles.btn}>
           <Button
             color="#384499"
-            title="Modify Consent"
+            title="File Breach"
             onPress={() => {
-              this.props.navigation.navigate("ModifyConsent",{
+              this.props.navigation.navigate("",{
                 userInformation:JSON.stringify(itemObj)
               });
             }}
           />
         </View>
-        <View style={styles.btn}>
+        {/* <View style={styles.btn}>
           <Button
             color="#384499"
             title="Deny Consent"
@@ -107,10 +112,10 @@ class UserRequest extends React.Component {
               });
             }}
           />
-        </View>
+        </View> */}
       </View>
     );
   }
 }
 
-export default UserRequest;
+export default UserProfile;

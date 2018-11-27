@@ -12,6 +12,7 @@ import ContractConfirmation from './screens/ContractConfirmation';
 import DenyConsent from './screens/DenyConsent';
 import TabNavigator from './screens/TabNavigator';
 import Browse from './screens/Browse';
+import UserProfile from './screens/UserProfile';
 
 
 const AppNavigator = createStackNavigator({
@@ -38,6 +39,9 @@ const AppNavigator = createStackNavigator({
   },
   Browse:{
     screen:Browse
+  },
+  UserProfile:{
+    screen:UserProfile
   },
   Dapp:{
     screen: App
