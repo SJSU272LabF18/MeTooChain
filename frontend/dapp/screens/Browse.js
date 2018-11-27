@@ -57,6 +57,15 @@ class Browse extends React.Component {
     ]
   };
 
+  reqCicked = usr => {
+    this.props.navigation.navigate("UserProfile", {
+      profileInfo: usr
+    });
+  };
+  constructor(props) {
+    super(props);
+    this.reqCicked = this.reqCicked.bind(this);
+  }
   // usrSelect = usr => {
   //   this.props.navigation.navigate("Browse", {
   //     userInfo: usr
@@ -70,7 +79,7 @@ class Browse extends React.Component {
   render() {
     const { navigation } = this.props;
 
-    const itemId = navigation.getParam("browseInfo", "NO-ID");
+    const itemId = navigation.getParam("profileInfo", "NO-ID");
     const itemObj = itemId;
     return (
       <View style={styles.body}>
