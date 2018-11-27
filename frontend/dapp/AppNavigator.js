@@ -9,6 +9,7 @@ import LoginDetails from './screens/LoginDetails';
 import UserRequest from './screens/UserRequest';
 import ModifyConsent from './screens/ModifyConsent';
 import ContractConfirmation from './screens/ContractConfirmation';
+import DenyConsent from './screens/DenyConsent';
 
 
 const AppNavigator = createStackNavigator({
@@ -29,6 +30,9 @@ const AppNavigator = createStackNavigator({
   },
   ContractConfirmation:{
     screen:ContractConfirmation
+  },
+  DenyConsent:{
+    screen:DenyConsent
   },
   Dapp:{
     screen: App
