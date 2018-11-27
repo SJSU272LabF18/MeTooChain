@@ -92,6 +92,7 @@ class Requests extends React.Component {
             {this.state.list.map(ent => {
               return (
                 <TouchableHighlight
+                key={ent.sendername}
                   onPress={() => this.reqCicked(ent)}
                   underlayColor="white"
                 >

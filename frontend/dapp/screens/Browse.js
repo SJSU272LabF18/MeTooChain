@@ -79,6 +79,7 @@ class Browse extends React.Component {
           {this.state.list.map(ent => {
               return (
                 <TouchableHighlight
+                key={ent.name}
                   onPress={() => this.reqCicked(ent)}
                   underlayColor="white"
                 >
