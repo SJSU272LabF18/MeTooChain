@@ -1,8 +1,4 @@
 Contract Details 
-<<<<<<< HEAD
 This is a trustworthy,Immutable contract between Sojan Mathew and John Cho
-=======
-This is a trustworthy,Immutable contract between Sojan Mathew and john doe
->>>>>>> master
 Contract Details 
-fling
+casual date

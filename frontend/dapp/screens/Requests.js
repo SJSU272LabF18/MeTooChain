@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
     backgroundColor: "white"
   },
   scrollView: {
-    width: "90%",
+    width: "90%"
     // height: "30%"
   },
   TextLbl: {
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 20
   }
 });
 
@@ -58,12 +58,8 @@ class Requests extends React.Component {
   };
 
   componentDidMount() {
-<<<<<<< HEAD
     const url = USERCONSTANTS.ROOTURL + "requests";
     fetch(url, {
-=======
-    fetch("http://10.236.254.230:5000/requests", {
->>>>>>> master
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -94,23 +90,23 @@ class Requests extends React.Component {
       <View style={styles.body}>
         {/* <Text>Pending Requests</Text> */}
         <Text style={styles.TextLbl}>Pending Requests</Text>
-          <ScrollView style={styles.scrollView}>
-            {this.state.list.map(ent => {
-              return (
-                <TouchableHighlight
+        <ScrollView style={styles.scrollView}>
+          {this.state.list.map(ent => {
+            return (
+              <TouchableHighlight
                 key={ent.sendername}
-                  onPress={() => this.reqCicked(ent)}
-                  underlayColor="white"
-                >
-                  <View style={styles.reqContainer}>
-                    <Text>{ent.sendername}</Text>
-                    <Text>Requesting consent for {ent.preference}</Text>
-                  </View>
-                </TouchableHighlight>
-              );
-            })}
-          </ScrollView>
-          <Text style={styles.TextLbl}>Explore</Text>
+                onPress={() => this.reqCicked(ent)}
+                underlayColor="white"
+              >
+                <View style={styles.reqContainer}>
+                  <Text>{ent.sendername}</Text>
+                  <Text>Requesting consent for {ent.preference}</Text>
+                </View>
+              </TouchableHighlight>
+            );
+          })}
+        </ScrollView>
+        <Text style={styles.TextLbl}>Explore</Text>
         <View style={styles.btn}>
           <Button
             color="#384499"
@@ -119,7 +115,7 @@ class Requests extends React.Component {
             //   this.props.navigation.navigate({ routeName: "Browse" });
             // }}
             onPress={() => {
-              this.props.navigation.navigate("Browse",{
+              this.props.navigation.navigate("Browse", {
                 browseinfo: ""
               });
             }}
