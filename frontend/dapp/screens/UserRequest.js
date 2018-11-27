@@ -64,13 +64,8 @@ class UserRequest extends React.Component {
       sendername: itemObj.sendername,
       preference: itemObj.preference
     };
-<<<<<<< HEAD
-  
-    fetch("http://10.250.157.76:5000/confirmContract", {
-=======
 
     fetch(url1, {
->>>>>>> master
       method: "POST",
       headers: {
         Accept: "application/json",
