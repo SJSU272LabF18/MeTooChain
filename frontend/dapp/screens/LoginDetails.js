@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
 
 class LoginDetails extends React.Component {
    userSignup = () => {
-    fetch("http://10.250.157.76:5000/login", {
+    fetch("http://10.236.254.230:5000/login", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -65,7 +65,7 @@ class LoginDetails extends React.Component {
         console.log(this.props);
         try{
          AsyncStorage.setItem('username', 'Sojan'+' '+'Mathew').then(
-          this.props.navigation.navigate({ routeName: "Requests" })
+          this.props.navigation.navigate({ routeName: "TabNavigator" })
          );
         }catch(e){
         Alert.alert(e);
