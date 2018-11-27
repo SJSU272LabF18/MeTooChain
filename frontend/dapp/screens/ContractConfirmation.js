@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { View, Text, Button, StyleSheet, ScrollView } from "react-native";
-
+import * as USERCONSTANTS from "../Helpers/helper";
 const styles = StyleSheet.create({
   body: {
     flex: 1,
@@ -49,7 +49,8 @@ class ContractConfirmation extends React.Component {
       <View style={styles.body}>
         <View style={styles.reqContainer}>
           <Text style={styles.reqText}>
-         A trustworthy contract has been established with {itemObj.sendername} for {itemObj.preference}
+            A trustworthy contract has been established with{" "}
+            {itemObj.sendername} for {itemObj.preference}
           </Text>
         </View>
         <View style={styles.btn}>
@@ -61,7 +62,7 @@ class ContractConfirmation extends React.Component {
             }}
           />
         </View>
-        </View>
+      </View>
     );
   }
 }
