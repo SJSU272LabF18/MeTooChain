@@ -4,28 +4,26 @@ import { View, Text, Button,StyleSheet } from 'react-native';
 
 const styles= StyleSheet.create({
     containerStyle: {
-        borderBottomWidth: 2,
-        shadowColor: 'white',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.5,
-        shadowRadius: 1,
-        elevation: 1,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowOpacity: 0.27,
+        shadowRadius: 4.65,
+        elevation: 16,
       
       },
     header:{
         color:'white',
         fontWeight: 'bold',
         fontSize: 30,
-        backgroundColor:'#384499',
+        backgroundColor:'#00adff',
         textAlign: 'center',
         paddingTop:20,
-        shadowOpacity: 0.75,
-        shadowRadius: 15,
-        shadowColor: 'grey',
-        shadowOffset: { height: 50, width: 50 },
     },
     subHeader:{
-        backgroundColor:'#384499',
+        backgroundColor:'#00adff',
         textAlign: 'center',
         fontStyle:'italic',
         color:'white',

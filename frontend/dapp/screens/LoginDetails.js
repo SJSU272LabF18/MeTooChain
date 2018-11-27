@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     fontSize: 30
   },
   body: {
-    backgroundColor: "#eb3b5a",
+    backgroundColor: "#ededed",
     flex: 1,
     alignItems: "center",
     justifyContent: "center"
@@ -31,11 +31,25 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: "gray",
     backgroundColor: "white",
-    borderWidth: 0.4,
+  //  borderWidth: 0.4,
     //  borderRadius:15,
-    textAlign: "center"
+    textAlign: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 3,
   },
   btn: {
+    textAlign: "center",
+    width: "90%",
+    marginTop:50,
+    borderRadius: 5
+  },
+  TextParent: {
     textAlign: "center",
     width: "90%",
     margin: 10,
@@ -44,10 +58,15 @@ const styles = StyleSheet.create({
 });
 
 class LoginDetails extends React.Component {
+<<<<<<< HEAD
+   userSignup = () => {
+    fetch("http://10.250.157.76:5000/login", {
+=======
   userSignup = () => {
     const url = USERCONSTANTS.ROOTURL + "login";
     // Alert.alert(url);
     fetch(url, {
+>>>>>>> master
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -83,10 +102,10 @@ class LoginDetails extends React.Component {
         <Text style={styles.header}>
           Please Enter Your Username and Password
         </Text>
-        <View style={styles.btn}>
+        <View style={styles.TextParent}>
           <TextInput style={styles.textBox} value="User Name" />
         </View>
-        <View style={styles.btn}>
+        <View style={styles.TextParent}>
           <TextInput style={styles.textBox} value="Password" />
         </View>
         <View style={styles.btn}>

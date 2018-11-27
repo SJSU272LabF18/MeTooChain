@@ -3,7 +3,7 @@ import { View, Text, Button,StyleSheet } from 'react-native';
 
 const styles=StyleSheet.create({
   body:{
-    backgroundColor:'#eb3b5a',
+    backgroundColor:'#ededed',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
