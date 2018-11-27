@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { View, Text, Button, StyleSheet, ScrollView } from "react-native";
+import { View, Text, Button, StyleSheet, ScrollView,AsyncStorage,Alert } from "react-native";
 
 const styles = StyleSheet.create({
   body: {
@@ -40,6 +40,30 @@ const styles = StyleSheet.create({
 });
 
 class UserRequest extends React.Component {
+  generateConsentContract=async (itemObj)=>{
+    const userName =await AsyncStorage.getItem('username');
+    const obj={
+      user:userName,
+      sendername:itemObj.sendername,
+      preference:itemObj.preference
+    };
+  
+    fetch("http://10.250.157.76:5000/confirmContract", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(obj)
+    }) .then(response => response.json())
+    .then(responseData => {
+     // Alert.alert(JSON.stringify(responseData));
+      this.props.navigation.navigate("ContractConfirmation",{
+        contractConfirm:JSON.stringify(itemObj)
+      });
+    })
+    
+  }
   render() {
     const { navigation } = this.props;
 
@@ -58,9 +82,7 @@ class UserRequest extends React.Component {
             color="#384499"
             title="Give Consent"
             onPress={() => {
-              this.props.navigation.navigate("ContractConfirmation",{
-                contractConfirm:JSON.stringify(itemObj)
-              });
+             this.generateConsentContract(itemObj);
             }}
           />
         </View>

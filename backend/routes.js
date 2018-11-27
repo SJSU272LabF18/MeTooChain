@@ -4,6 +4,7 @@ const router = express.Router();
 const Image = require("./controllers/images");
 const userlogin = require("./controllers/login");
 const requests = require("./controllers/getrequests");
+const confirmContract=require("./controllers/confirmContract");
 
 router.get("/", Image.test);
 router.get("/accounts", Image.accounts);
@@ -38,5 +39,12 @@ router.get("/requests", function(req, res) {
   console.log("Inside requests route");
   requests.getrequests(req, res);
 });
+
+router.post("/confirmContract",
+confirmContract.upload.single("file"),
+confirmContract.uploadFile,
+confirmContract.postData,
+confirmContract.create
+);
 
 module.exports = router;
