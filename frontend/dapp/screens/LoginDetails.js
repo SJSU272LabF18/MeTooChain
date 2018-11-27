@@ -6,7 +6,8 @@ import {
   Button,
   TextInput,
   StyleSheet,
-  AlertAndroid
+  AsyncStorage,
+  Alert
 } from "react-native";
 
 const styles = StyleSheet.create({
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
 });
 
 class LoginDetails extends React.Component {
-  userSignup = () => {
+   userSignup = () => {
     fetch("http://10.240.46.121:5000/login", {
       method: "POST",
       headers: {
@@ -62,7 +63,14 @@ class LoginDetails extends React.Component {
         //   "Click the button to get a Chuck Norris quote!"
         // );
         console.log(this.props);
-        this.props.navigation.navigate({ routeName: "Requests" });
+        try{
+         AsyncStorage.setItem('username', 'Sojan'+' '+'Mathew').then(
+          this.props.navigation.navigate({ routeName: "Requests" })
+         );
+        }catch(e){
+        Alert.alert(e);
+        }
+       
       })
       .done();
   };
