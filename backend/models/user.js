@@ -8,12 +8,20 @@ var UserSchema = new Schema({
 var requestSchema = new Schema({
   sendername: { type: String, trim: true },
   preference: { type: String, trim: true },
-  level: { type: Number, trim: true }
+  level: { type: Number, trim: true },
+  status: { type: Number, trim: true }
+});
+var sentRequestsSchema = new Schema({
+  receivername: { type: String, trim: true },
+  preference: { type: String, trim: true },
+  level: { type: Number, trim: true },
+  status: { type: Number, trim: true }
 });
 
 var UserSchema = new Schema({
   user: { type: UserSchema },
-  requests: [{ type: requestSchema }]
+  requests: [{ type: requestSchema }],
+  sentrequests: [{ type: sentRequestsSchema }]
 });
 
 // module.exports = mongoose.model("users", UserSchema);

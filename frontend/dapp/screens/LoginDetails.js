@@ -1,5 +1,6 @@
 import React from "react";
 // import axios from "axios";
+import * as USERCONSTANTS from "../Helpers/helper";
 import {
   View,
   Text,
@@ -43,8 +44,10 @@ const styles = StyleSheet.create({
 });
 
 class LoginDetails extends React.Component {
-   userSignup = () => {
-    fetch("http://10.236.254.230:5000/login", {
+  userSignup = () => {
+    const url = USERCONSTANTS.ROOTURL + "login";
+    // Alert.alert(url);
+    fetch(url, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -63,14 +66,13 @@ class LoginDetails extends React.Component {
         //   "Click the button to get a Chuck Norris quote!"
         // );
         console.log(this.props);
-        try{
-         AsyncStorage.setItem('username', 'Sojan'+' '+'Mathew').then(
-          this.props.navigation.navigate({ routeName: "TabNavigator" })
-         );
-        }catch(e){
-        Alert.alert(e);
+        try {
+          AsyncStorage.setItem("username", "Sojan" + " " + "Mathew").then(
+            this.props.navigation.navigate({ routeName: "Requests" })
+          );
+        } catch (e) {
+          Alert.alert(e);
         }
-       
       })
       .done();
   };
