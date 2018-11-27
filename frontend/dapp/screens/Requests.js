@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import * as USERCONSTANTS from "../Helpers/helper";
 import {
   Alert,
   View,
@@ -53,7 +54,8 @@ class Requests extends React.Component {
   };
 
   componentDidMount() {
-    fetch("http://10.250.157.76:5000/requests", {
+    const url = USERCONSTANTS.ROOTURL + "requests";
+    fetch(url, {
       method: "GET",
       headers: {
         Accept: "application/json",

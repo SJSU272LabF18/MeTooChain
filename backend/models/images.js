@@ -1,27 +1,28 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-
-const imageSchema = mongoose.Schema({
+const imageSchema = mongoose.Schema(
+  {
     label: {
-        type: String,
+      type: String
     },
     ipfsHash: {
-        type: String,
+      type: String
     },
     ipfsAddress: {
-        type: String,
+      type: String
     },
     transactionHash: {
-        type: String,
+      type: String
     },
     blockHash: {
-        type: String,
-    },
-}, {
-        timestamps: true,
-    });
+      type: String
+    }
+  },
+  {
+    timestamps: true
+  }
+);
 
 imageSchema.index({ label: 1 });
 
-
-module.exports = mongoose.model('Image', imageSchema);
+module.exports = mongoose.model("Image", imageSchema);
