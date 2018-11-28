@@ -1,15 +1,22 @@
 var User = require("../models/user");
-exports.getrequests = function(req, res) {
+exports.getbreach = function(req, res) {
   var results = {};
   var pipeline = [
     {
       $match: {
         "user.username": {
-          //  $eq: req.body.username
-          $eq: "sojan"
+          $eq: req.body.username
+         // $eq: "sojan"
         }
       }
-    }
+    },
+    {
+      $project: {
+        receivedBreach: "$receivedBreach",
+        _id: 0
+      }
+    },
+    { $unwind: "$receivedBreach" },
   ];
   var promise = User.aggregate(pipeline).exec();
   promise

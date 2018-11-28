@@ -1,8 +1,4 @@
 Contract Details 
-<<<<<<< HEAD
-This is a trustworthy,Immutable contract between Sojan Mathew and John Abraham
-=======
-This is a trustworthy,Immutable contract between Sojan Mathew and John Cho
->>>>>>> master
+This is a trustworthy,Immutable contract between Sojan Mathew and John Wick
 Contract Details 
-casual date
+flirt

@@ -1,11 +1,13 @@
 var User = require("../models/user");
 exports.getnotifications = function(req, res) {
   var results = {};
+  console.log("notifications  data-"+req);
   var pipeline = [
     {
       $match: {
         "user.username": {
-          $eq: "john doe"
+          // $eq: "john doe"
+          $eq: req.body.username
         }
       }
     },
@@ -17,13 +19,13 @@ exports.getnotifications = function(req, res) {
     },
 
     { $unwind: "$sentrequests" },
-    {
-      $match: {
-        "sentrequests.status": {
-          $eq: 3
-        }
-      }
-    }
+    // {
+    //   $match: {
+    //     "sentrequests.status": {
+    //       $eq: 3
+    //     }
+    //   }
+    // }
   ];
   var promise = User.aggregate(pipeline).exec();
   promise

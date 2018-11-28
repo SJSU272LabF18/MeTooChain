@@ -37,12 +37,22 @@ const styles = StyleSheet.create({
      borderRadius:100
   },
   scrollView: {
-    width: "90%"
-    // height: "30%"
+    width: "90%",
+    marginLeft:"5%",
+    borderRadius:1,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 6,
   },
   TextLbl: {
     fontWeight: "bold",
-    fontSize: 20
+    fontSize: 20,
+    marginBottom  :15
   }
 });
 
@@ -97,23 +107,25 @@ class Requests extends React.Component {
       <View style={styles.body}>
         {/* <Text>Pending Requests</Text> */}
         <Text style={styles.TextLbl}>Pending Requests</Text>
-        <ScrollView style={styles.scrollView}>
-          {this.state.list.map(ent => {
-            return (
-              <TouchableHighlight
-                key={ent.sendername}
-                onPress={() => this.reqCicked(ent)}
-                underlayColor="white"
-              >
-                <View style={styles.reqContainer}>
-                  <Text>{ent.sendername}</Text>
-                  <Text>Requesting consent for {ent.preference}</Text>
-                </View>
-              </TouchableHighlight>
-            );
-          })}
-        </ScrollView>
-        <Text style={styles.TextLbl}>Explore Profiles</Text>
+        <View style={styles.scrollViewParent}>
+          <ScrollView style={styles.scrollView}>
+            {this.state.list.map((ent,i) => {
+              return (
+                <TouchableHighlight
+                key={i}
+                  onPress={() => this.reqCicked(ent)}
+                  underlayColor="white"
+                >
+                  <View style={styles.reqContainer}>
+                    <Text>{ent.sendername}</Text>
+                    <Text>Requesting consent for {ent.preference}</Text>
+                  </View>
+                </TouchableHighlight>
+              );
+            })}
+          </ScrollView>
+          </View>
+          <Text style={styles.TextLbl}>Explore</Text>
         <View style={styles.btn}>
           <Button
             color="#384499"

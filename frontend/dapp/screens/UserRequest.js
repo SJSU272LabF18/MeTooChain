@@ -7,6 +7,7 @@ import {
   StyleSheet,
   ScrollView,
   AsyncStorage,
+  ToastAndroid,
   Alert
 } from "react-native";
 
@@ -64,7 +65,7 @@ class UserRequest extends React.Component {
       sendername: itemObj.sendername,
       preference: itemObj.preference
     };
-
+    ToastAndroid.show('Generating Contract. Please wait!',ToastAndroid.CENTER, ToastAndroid.LONG);
     fetch(url1, {
       method: "POST",
       headers: {
