@@ -55,18 +55,6 @@ class Browse extends React.Component {
         age: "28"
       },
       {
-<<<<<<< HEAD
-        name: "Amy",
-        age: "23"
-      },
-      {
-        name: "John Abraham",
-        age: "35"
-      }
-    ],
-
-    ProfilePhotos: []
-=======
         name: "Amanda",
         age: "23"
       },
@@ -77,13 +65,12 @@ class Browse extends React.Component {
       {
         name: "Taylor",
         age: "23"
-      } ,
+      },
       {
         name: "John",
         age: "23"
-      } 
+      }
     ]
->>>>>>> master
   };
   // componentDidMount() {
   //   const url = USERCONSTANTS.ROOTURL + "getProfileImg";

@@ -59,17 +59,10 @@ const styles = StyleSheet.create({
 });
 
 class LoginDetails extends React.Component {
-<<<<<<< HEAD
   state = {
-    username: "username",
+    username: "John",
     password: "password"
   };
-=======
-  state={
-    username:"John",
-    password:"password"
-  }
->>>>>>> master
   userSignup = () => {
     const url = USERCONSTANTS.ROOTURL + "login";
     // Alert.alert(url);

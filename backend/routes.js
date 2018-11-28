@@ -12,8 +12,7 @@ const requestconsent = require("./controllers/requestconsent");
 const filebreach = require("./controllers/fileBreach");
 const getbreach = require("./controllers/getbreach");
 const uploadprofileimage = require("./controllers/uploadimage");
-let fs = require("fs");
-const multer = require("multer");
+
 router.get("/", Image.test);
 router.get("/accounts", Image.accounts);
 router.get("/web3-status", Image.webStatus);
@@ -83,50 +82,49 @@ router.post("/signup", function(req, res) {
   signup.usersignup(req, res);
 });
 
-<<<<<<< HEAD
 var username = "sojan";
 
-var storagePropFiles = multer.diskStorage({
-  destination: function(req, file, callback) {
-    console.log("req.session.user is", JSON.stringify(req.params));
-    callback(null, createDirectory(username));
-  },
-  filename: function(req, file, callback) {
-    console.log("req", req.body);
-    callback(null, file.originalname);
-  }
-});
+// var storagePropFiles = multer.diskStorage({
+//   destination: function(req, file, callback) {
+//     console.log("req.session.user is", JSON.stringify(req.params));
+//     callback(null, createDirectory(username));
+//   },
+//   filename: function(req, file, callback) {
+//     console.log("req", req.body);
+//     callback(null, file.originalname);
+//   }
+// });
 
-var rootDirectory = "public/images/";
+// var rootDirectory = "public/images/";
 
-var uploadPropFiles = multer({
-  storage: storagePropFiles
-});
+// var uploadPropFiles = multer({
+//   storage: storagePropFiles
+// });
 
-function createDirectory(username) {
-  if (!fs.existsSync(rootDirectory)) {
-    fs.mkdirSync(rootDirectory);
-  }
-  let directory = rootDirectory + username;
-  if (!fs.existsSync(directory)) {
-    fs.mkdirSync(directory);
-  }
-  return directory;
-}
+// function createDirectory(username) {
+//   if (!fs.existsSync(rootDirectory)) {
+//     fs.mkdirSync(rootDirectory);
+//   }
+//   let directory = rootDirectory + username;
+//   if (!fs.existsSync(directory)) {
+//     fs.mkdirSync(directory);
+//   }
+//   return directory;
+// }
 
-router.post("/upload-image/", uploadPropFiles.any(), function(req, res, next) {
-  console.log("###/saveProfile");
-  console.log(JSON.stringify(req.body));
-  console.log(req.body);
-  if (true) {
-    console.log(req.body, "Body");
-    // console.log(req.files, 'files');
-    res.status(200).send({ result: "File is uploaded" });
-  } else {
-    res.statusMessage = "invalid session";
-    res.status(401).end();
-  }
-});
+// router.post("/upload-image/", uploadPropFiles.any(), function(req, res, next) {
+//   console.log("###/saveProfile");
+//   console.log(JSON.stringify(req.body));
+//   console.log(req.body);
+//   if (true) {
+//     console.log(req.body, "Body");
+//     // console.log(req.files, 'files');
+//     res.status(200).send({ result: "File is uploaded" });
+//   } else {
+//     res.statusMessage = "invalid session";
+//     res.status(401).end();
+//   }
+// });
 const filepath =
   "/Users/mathewsojan/SoftwareEngineering/CMPE272/TrustMe_v1/Project-Team-17/backend/public/images";
 
@@ -165,7 +163,7 @@ router.post("/getProfileImg", function(req, res, next) {
     res.statusMessage = "invalid session";
     res.status(401).end();
   }
-=======
+});
 router.post("/getContractByReceiver", function(req, res) {
   console.log("Inside getContractByReceiver route");
   confirmContract.findByReceiver(req, res);
@@ -174,7 +172,6 @@ router.post("/getContractByReceiver", function(req, res) {
 router.post("/getContractBySender", function(req, res) {
   console.log("Inside getContractBySender route");
   confirmContract.findBySender(req, res);
->>>>>>> master
 });
 
 module.exports = router;
