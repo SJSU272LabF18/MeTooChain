@@ -6,6 +6,7 @@ import {
   Text,
   Button,
   TextInput,
+  ToastAndroid,
   StyleSheet,
   AsyncStorage,
   Alert
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   header: {
-    color: "white",
+    color: "black",
     paddingBottom: 25
   },
   textBox: {
@@ -58,6 +59,10 @@ const styles = StyleSheet.create({
 });
 
 class LoginDetails extends React.Component {
+  state={
+    username:"username",
+    password:"password"
+  }
   userSignup = () => {
     const url = USERCONSTANTS.ROOTURL + "login";
     // Alert.alert(url);
@@ -68,8 +73,8 @@ class LoginDetails extends React.Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        username: "sojan",
-        password: "sojan"
+        username: this.state.username,
+        password: this.state.password
       })
     })
       .then(response => response.json())
@@ -79,10 +84,13 @@ class LoginDetails extends React.Component {
         //   "Signup Success!",
         //   "Click the button to get a Chuck Norris quote!"
         // );
+       if(responseData.message!="Succesfull login"){
+        Alert.alert(responseData.message);
+       }
         console.log(this.props);
         try {
-          AsyncStorage.setItem("username", "Sojan" + " " + "Mathew").then(
-            this.props.navigation.navigate({ routeName: "Requests" })
+          AsyncStorage.setItem("username", this.state.username).then(
+            this.props.navigation.navigate({ routeName: "TabNavigator" })
           );
         } catch (e) {
           Alert.alert(e);
@@ -95,13 +103,19 @@ class LoginDetails extends React.Component {
     return (
       <View style={[styles.header, styles.body]}>
         <Text style={styles.header}>
-          Please Enter Your Username and Password
+          Please Enter Your Username and Passwordd
         </Text>
         <View style={styles.TextParent}>
-          <TextInput style={styles.textBox} value="User Name" />
+          <TextInput 
+           onChangeText={(text) => this.setState({...this.state,username:text})}
+          style={styles.textBox} value={this.state.username} />
         </View>
         <View style={styles.TextParent}>
-          <TextInput style={styles.textBox} value="Password" />
+          <TextInput 
+          password={true}
+          secureTextEntry={true}
+           onChangeText={(text) => this.setState({...this.state,password:text})}
+          style={styles.textBox} value={this.state.password} />
         </View>
         <View style={styles.btn}>
           <Button color="#384499" title="Login" onPress={this.userSignup} />

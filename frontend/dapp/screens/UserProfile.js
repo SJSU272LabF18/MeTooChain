@@ -85,25 +85,20 @@ class UserProfile extends React.Component {
   }
   render() {
     const { navigation } = this.props;
-
     const itemId = navigation.getParam("profileInfo", "NO-ID");
-    const itemObj = itemId;
-    
+    const itemObj = itemId; 
     return (
       <View style={styles.body}>
         <View style={styles.reqContainer}>
-        <Text style={styles.reqText}>
-            {itemObj.sendername} is requesting consent for a{" "}
-            Description: {itemObj.preference} . Please Select your preference below!
+          <Text style={styles.reqText}>
+            {itemObj.sendername} User Profile for {" "}
+            Description: {itemObj.preference} . Please descibe 
           </Text>
         </View>
         <View style={styles.btn}>
           <Button
             color="#384499"
             title="Request Consent"
-            // onPress={() => {
-            //  this.generateConsentContract(itemObj);
-            // }}
             onPress={() => {
                 this.props.navigation.navigate("RequestConfirmation",{
                   requestconfirm:JSON.stringify(itemObj)
@@ -122,17 +117,6 @@ class UserProfile extends React.Component {
             }}
           />
         </View>
-        {/* <View style={styles.btn}>
-          <Button
-            color="#384499"
-            title="Deny Consent"
-            onPress={() => {
-              this.props.navigation.navigate("DenyConsent" ,{
-                DenyCon:JSON.stringify(itemObj)
-              });
-            }}
-          />
-        </View> */}
       </View>
     );
 

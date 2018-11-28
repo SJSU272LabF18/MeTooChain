@@ -57,24 +57,15 @@ class Browse extends React.Component {
     ]
   };
 
-  reqCicked = usr => {
+  reqCicked = abc => {
     this.props.navigation.navigate("UserProfile", {
-      profileInfo: usr
+      profileInfo: abc
     });
   };
   constructor(props) {
     super(props);
     this.reqCicked = this.reqCicked.bind(this);
   }
-  // usrSelect = usr => {
-  //   this.props.navigation.navigate("Browse", {
-  //     userInfo: usr
-  //   });
-  // };
-  // constructor(props) {
-  //   super(props);
-  //   this.usrSelect = this.usrSelect.bind(this);
-  // }
 
   render() {
     const { navigation } = this.props;

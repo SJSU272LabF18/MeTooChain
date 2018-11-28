@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class Requests extends React.Component {
+class Contracts extends React.Component {
   state = {
     list: [
       {
@@ -96,7 +96,7 @@ class Requests extends React.Component {
     return (
       <View style={styles.body}>
         {/* <Text>Pending Requests</Text> */}
-        <Text style={styles.TextLbl}>Pending Requests</Text>
+        <Text style={styles.TextLbl}>My Contracts</Text>
         <ScrollView style={styles.scrollView}>
           {this.state.list.map(ent => {
             return (
@@ -113,7 +113,7 @@ class Requests extends React.Component {
             );
           })}
         </ScrollView>
-        <Text style={styles.TextLbl}>Explore Profiles</Text>
+        {/* <Text style={styles.TextLbl}>Explore Profiles</Text>
         <View style={styles.btn}>
           <Button
             color="#384499"
@@ -127,7 +127,7 @@ class Requests extends React.Component {
               });
             }}
           />
-        </View>
+        </View> */}
         {/* <View style={styles.btn}>
           <Button
             color="#384499"
@@ -142,4 +142,4 @@ class Requests extends React.Component {
   }
 }
 
-export default Requests;
+export default Contracts;
