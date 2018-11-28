@@ -13,6 +13,8 @@ import DenyConsent from './screens/DenyConsent';
 import TabNavigator from './screens/TabNavigator';
 import Browse from './screens/Browse';
 import UserProfile from './screens/UserProfile';
+import RequestConfirmation from './screens/RequestConfirmation';
+import BreachConfirmation from './screens/BreachConfirmation';
 
 
 const AppNavigator = createStackNavigator({
@@ -42,6 +44,12 @@ const AppNavigator = createStackNavigator({
   },
   UserProfile:{
     screen:UserProfile
+  },
+  RequestConfirmation:{
+    screen:RequestConfirmation
+  },
+  BreachConfirmation:{
+    screen:BreachConfirmation
   },
   Dapp:{
     screen: App
