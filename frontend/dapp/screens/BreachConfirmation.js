@@ -34,6 +34,12 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     padding: 15
   },
+  TextParent: {
+    textAlign: "center",
+    width: "90%",
+    margin: 10,
+    borderRadius: 5
+  },
   reqText: {
     fontSize: 17
   }

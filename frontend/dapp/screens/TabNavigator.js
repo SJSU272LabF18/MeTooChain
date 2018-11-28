@@ -3,6 +3,7 @@ import { View, Text, Button } from 'react-native';
 import {StackActions, NavigationActions,createBottomTabNavigator,createAppContainer } from 'react-navigation';
 import NotificationScreen from "./NotificationScreen";
 import Requests from "./Requests";
+import Contracts from "./Contracts";
 
 // const TabNavigator = createBottomTabNavigator({
 //   Requests: { screen: Requests },
@@ -16,6 +17,7 @@ export default createBottomTabNavigator(
   {
     Home: Requests,
     Notification: NotificationScreen,
+    MyContracts: Contracts
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -25,6 +27,8 @@ export default createBottomTabNavigator(
         if (routeName === 'Home') {
           iconName = `ios-home${focused ? '' : ''}`;
         } else if (routeName === 'Notification') {
+          iconName = `ios-notifications${focused ? '' : ''}`;
+        } else if (routeName === 'My Contracts') {
           iconName = `ios-notifications${focused ? '' : ''}`;
         }
 
