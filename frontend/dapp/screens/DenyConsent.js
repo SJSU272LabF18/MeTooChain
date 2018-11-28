@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
 import { View, Text, Button, StyleSheet, ScrollView } from "react-native";
-
+import * as USERCONSTANTS from "../Helpers/helper";
 const styles = StyleSheet.create({
   body: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#ededed"
+    backgroundColor: "#eb3b5a"
   },
   btn: {
     width: "90%",
@@ -49,7 +49,8 @@ class DenyConsent extends React.Component {
       <View style={styles.body}>
         <View style={styles.reqContainer}>
           <Text style={styles.reqText}>
-            Consent has been denied for {itemObj.sendername} by {itemObj.preference}
+            Consent has been denied for {itemObj.sendername} by{" "}
+            {itemObj.preference}
           </Text>
         </View>
         <View style={styles.btn}>
@@ -57,11 +58,11 @@ class DenyConsent extends React.Component {
             color="#384499"
             title="Back"
             onPress={() => {
-              this.props.navigation.navigate({ routeName: "TabNavigator" });
+              this.props.navigation.navigate({ routeName: "Requests" });
             }}
           />
         </View>
-        </View>
+      </View>
     );
   }
 }

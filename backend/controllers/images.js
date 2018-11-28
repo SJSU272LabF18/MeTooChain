@@ -16,7 +16,7 @@ const Web3 = require("web3");
 const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 const code = fs.readFileSync("./contracts/StoreHash.sol").toString();
 const solc = require("solc");
-     
+
 const compiledCode = solc.compile(code);
 const abi = JSON.parse(compiledCode.contracts[":SaveAddress"].interface);
 const SavingContract = new web3.eth.Contract(

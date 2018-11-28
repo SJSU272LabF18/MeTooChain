@@ -1,7 +1,7 @@
 var User = require("../models/user");
 exports.getnotifications = function(req, res) {
   var results = {};
-  console.log("notifications  data-"+req);
+  console.log("notifications  data-" + req.body);
   var pipeline = [
     {
       $match: {
@@ -18,7 +18,7 @@ exports.getnotifications = function(req, res) {
       }
     },
 
-    { $unwind: "$sentrequests" },
+    { $unwind: "$sentrequests" }
     // {
     //   $match: {
     //     "sentrequests.status": {

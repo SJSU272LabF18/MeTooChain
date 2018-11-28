@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   body: {
     flex: 1,
     alignItems: "center",
-    paddingTop:"12%",
+    paddingTop: "12%",
     //justifyContent: "center",
     backgroundColor: "#ededed"
   },
@@ -26,34 +26,34 @@ const styles = StyleSheet.create({
   },
   reqContainer: {
     width: "100%",
-     borderWidth: 0.4,
+    borderWidth: 0.4,
     padding: 15,
     borderColor: "grey",
     backgroundColor: "white"
   },
   scrollViewParent: {
     width: "100%",
-     height: "45%",
-     marginBottom:30,
-     borderRadius:100
+    height: "45%",
+    marginBottom: 30,
+    borderRadius: 100
   },
   scrollView: {
     width: "90%",
-    marginLeft:"5%",
-    borderRadius:1,
+    marginLeft: "5%",
+    borderRadius: 1,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 3,
+      height: 3
     },
     shadowOpacity: 0.27,
     shadowRadius: 4.65,
-    elevation: 6,
+    elevation: 6
   },
   TextLbl: {
     fontWeight: "bold",
     fontSize: 20,
-    marginBottom  :15
+    marginBottom: 15
   }
 });
 
@@ -75,7 +75,7 @@ class Requests extends React.Component {
     ]
   };
 
-  componentDidMount=async()=> {
+  componentDidMount = async () => {
     const url = USERCONSTANTS.ROOTURL + "requests";
     const userName = await AsyncStorage.getItem("username");
     fetch(url, {
@@ -84,8 +84,8 @@ class Requests extends React.Component {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
-      body:JSON.stringify({
-        username:userName
+      body: JSON.stringify({
+        username: userName
       })
     })
       .then(response => response.json())
@@ -94,7 +94,7 @@ class Requests extends React.Component {
         this.setState({ list: responseData.value[0].requests });
       })
       .done();
-  }
+  };
   reqCicked = usr => {
     this.props.navigation.navigate("userRequest", {
       userInfo: usr
@@ -114,25 +114,25 @@ class Requests extends React.Component {
         <Text style={styles.TextLbl}>Pending Requests</Text>
         <View style={styles.scrollViewParent}>
           <ScrollView style={styles.scrollView}>
-            {this.state.list.map((ent,i) => {
-              if(ent.status=="Pending"){
-              return (
-                <TouchableHighlight
-                key={i}
-                  onPress={() => this.reqCicked(ent)}
-                  underlayColor="white"
-                >
-                  <View style={styles.reqContainer}>
-                    <Text>{ent.sendername}</Text>
-                    <Text>Requesting consent for {ent.preference}</Text>
-                  </View>
-                </TouchableHighlight>
-              );
-            }
+            {this.state.list.map((ent, i) => {
+              if (ent.status == "Pending") {
+                return (
+                  <TouchableHighlight
+                    key={i}
+                    onPress={() => this.reqCicked(ent)}
+                    underlayColor="white"
+                  >
+                    <View style={styles.reqContainer}>
+                      <Text>{ent.sendername}</Text>
+                      <Text>Requesting consent for {ent.preference}</Text>
+                    </View>
+                  </TouchableHighlight>
+                );
+              }
             })}
           </ScrollView>
-          </View>
-          <Text style={styles.TextLbl}>Explore</Text>
+        </View>
+        <Text style={styles.TextLbl}>Explore</Text>
         <View style={styles.btn}>
           <Button
             color="#384499"

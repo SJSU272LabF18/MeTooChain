@@ -44,11 +44,11 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 3,
+      height: 3
     },
     shadowOpacity: 0.27,
     shadowRadius: 4.65,
-    elevation: 6,
+    elevation: 6
   },
   reqText: {
     fontSize: 17
@@ -72,7 +72,11 @@ class UserRequest extends React.Component {
       preference: itemObj.preference,
       status:itemObj.status
     };
-    ToastAndroid.show('Generating Contract. Please wait!',ToastAndroid.CENTER, ToastAndroid.LONG);
+    ToastAndroid.show(
+      "Generating Contract. Please wait!",
+      ToastAndroid.CENTER,
+      ToastAndroid.LONG
+    );
     fetch(url1, {
       method: "POST",
       headers: {
