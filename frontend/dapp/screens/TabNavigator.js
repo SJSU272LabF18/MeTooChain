@@ -17,12 +17,14 @@ import Contracts from "./Contracts";
 // export default createAppContainer(TabNavigator);
 
 import Ionicons from "react-native-vector-icons/Ionicons";
+import OverLay from "./OverLay";
 
 export default createBottomTabNavigator(
   {
     Home: Requests,
     Notification: NotificationScreen,
-    Contracts: Contracts
+    Contracts: Contracts,
+    Help: OverLay
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -35,6 +37,8 @@ export default createBottomTabNavigator(
           iconName = `ios-notifications${focused ? "" : ""}`;
         } else if (routeName === "Contracts") {
           iconName = `ios-contract${focused ? "" : ""}`;
+        }else if (routeName === "Help") {
+          iconName = `ios-information-circle${focused ? "" : ""}`;
         }
 
         // You can return any component that you like here! We usually use an
