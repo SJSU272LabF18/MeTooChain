@@ -9,13 +9,13 @@ var requestSchema = new Schema({
   sendername: { type: String, trim: true },
   preference: { type: String, trim: true },
   level: { type: Number, trim: true },
-  status: { type: Number, trim: true } ////////  3. accepted/Denied
+  status: { type: String, trim: true } ////////  3. accepted/Denied
 });
 var sentRequestsSchema = new Schema({
   receivername: { type: String, trim: true },
   preference: { type: String, trim: true },
   level: { type: Number, trim: true },
-  status: { type: Number, trim: true } ///// 1.pending
+  status: { type: String, trim: true } ///// 1.pending
 });
 var filedBreach = new Schema({
   name: { type: String, trim: true },

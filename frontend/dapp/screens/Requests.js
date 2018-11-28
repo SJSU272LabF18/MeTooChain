@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
      borderRadius:100
   },
   scrollView: {
-<<<<<<< HEAD
     width: "90%",
     marginLeft:"5%",
     borderRadius:1,
@@ -54,14 +53,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 20,
     marginBottom  :15
-=======
-    width: "90%"
-    // height: "30%"
-  },
-  TextLbl: {
-    fontWeight: "bold",
-    fontSize: 20
->>>>>>> master
   }
 });
 
@@ -84,12 +75,8 @@ class Requests extends React.Component {
   };
 
   componentDidMount() {
-<<<<<<< HEAD
-    fetch("http://10.250.157.76:5000/requests", {
-=======
     const url = USERCONSTANTS.ROOTURL + "requests";
     fetch(url, {
->>>>>>> master
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -120,7 +107,6 @@ class Requests extends React.Component {
       <View style={styles.body}>
         {/* <Text>Pending Requests</Text> */}
         <Text style={styles.TextLbl}>Pending Requests</Text>
-<<<<<<< HEAD
         <View style={styles.scrollViewParent}>
           <ScrollView style={styles.scrollView}>
             {this.state.list.map((ent,i) => {
@@ -140,25 +126,6 @@ class Requests extends React.Component {
           </ScrollView>
           </View>
           <Text style={styles.TextLbl}>Explore</Text>
-=======
-        <ScrollView style={styles.scrollView}>
-          {this.state.list.map(ent => {
-            return (
-              <TouchableHighlight
-                key={ent.sendername}
-                onPress={() => this.reqCicked(ent)}
-                underlayColor="white"
-              >
-                <View style={styles.reqContainer}>
-                  <Text>{ent.sendername}</Text>
-                  <Text>Requesting consent for {ent.preference}</Text>
-                </View>
-              </TouchableHighlight>
-            );
-          })}
-        </ScrollView>
-        <Text style={styles.TextLbl}>Explore</Text>
->>>>>>> master
         <View style={styles.btn}>
           <Button
             color="#384499"
