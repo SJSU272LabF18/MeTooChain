@@ -1,5 +1,13 @@
 import React, { Fragment } from "react";
-import { View, Text, Button, StyleSheet, ScrollView,TouchableHighlight } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  ScrollView,
+  TouchableHighlight
+} from "react-native";
+import * as USERCONSTANTS from "../Helpers/helper";
 
 const styles = StyleSheet.create({
   body: {
@@ -43,19 +51,89 @@ class Browse extends React.Component {
   state = {
     list: [
       {
-        name: "John Doe",
+        name: "Stacy",
         age: "28"
       },
       {
-        name: "John Cho",
+        name: "Amy",
         age: "23"
       },
       {
         name: "John Abraham",
         age: "35"
       }
-    ]
+    ],
+
+    ProfilePhotos: []
   };
+  // componentDidMount() {
+  //   const url = USERCONSTANTS.ROOTURL + "getProfileImg";
+  //   var photos = [];
+  //   // for (let i = 0; i < this.state.list.length; i++) {
+  //   const data = { id: this.state.list[i].name };
+  //   console.log("inside", this.state.list[i].name);
+  //   fetch(url, {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       username: this.state.username,
+  //       password: this.state.password
+  //     })
+  //   })
+  //     .then(response => response.json())
+  //     .then(responseData => {
+  //       photos.push(responseData.data);
+  //       this.setState({
+  //         ProfilePhotos: photos
+  //       });
+  //       var finalList = [];
+  //       this.state.list.forEach(profilephoto => {
+  //         //property
+  //         this.state.ProfilePhotos.forEach(photo => {
+  //           if (photo.user === profilephoto.name) {
+  //             profilephoto.photo = photo.img;
+  //             finalProperties.push(profilephoto);
+  //           }
+  //         });
+  //       });
+  //       this.setState({
+  //         list: finalList
+  //       });
+  //     })
+  //     .done();
+  //   // await axios
+  //   //   .post("http://localhost:3001/getProfileImg", data)
+  //   //   .then(async response => {
+  //   //     console.log(JSON.stringify(response.data));
+  //   //     photos.push(response.data);
+  //   //     this.setState({
+  //   //       ProfilePhotos: photos
+  //   //     });
+  //   //     console.log("response imagee", JSON.stringify(photos));
+  //   //     console.log("photos.length", JSON.stringify(photos.length));
+  //   //     console.log(
+  //   //       "PropertyPhotos",
+  //   //       JSON.stringify(this.state.ProfilePhotos)
+  //   //     );
+  //   //   });
+  //   // }
+  //   var finalList = [];
+  //   this.state.list.forEach(profilephoto => {
+  //     //property
+  //     this.state.ProfilePhotos.forEach(photo => {
+  //       if (photo.user === profilephoto.name) {
+  //         profilephoto.photo = photo.img;
+  //         finalProperties.push(profilephoto);
+  //       }
+  //     });
+  //   });
+  //   this.setState({
+  //     list: finalList
+  //   });
+  // }
 
   reqCicked = usr => {
     this.props.navigation.navigate("UserProfile", {
@@ -86,22 +164,21 @@ class Browse extends React.Component {
         <Text style={styles.TextLbl}>User list</Text>
         <ScrollView style={styles.scrollView}>
           {this.state.list.map(ent => {
-              return (
-                <TouchableHighlight
+            return (
+              <TouchableHighlight
                 key={ent.name}
-                  onPress={() => this.reqCicked(ent)}
-                  underlayColor="white"
-                >
-                  <View style={styles.reqContainer}>
-                    <Text>{ent.name}</Text>
-                    <Text>Age: {ent.age}</Text>
-                  </View>
-                </TouchableHighlight>
-              );
+                onPress={() => this.reqCicked(ent)}
+                underlayColor="white"
+              >
+                <View style={styles.reqContainer}>
+                  <Text>{ent.name}</Text>
+                  <Text>Age: {ent.age}</Text>
+                </View>
+              </TouchableHighlight>
+            );
           })}
         </ScrollView>
       </View>
-
 
       // <View style={styles.body}>
       //   <View style={styles.reqContainer}>

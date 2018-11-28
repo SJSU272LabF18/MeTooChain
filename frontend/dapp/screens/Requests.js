@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   body: {
     flex: 1,
     alignItems: "center",
-    paddingTop:"12%",
+    paddingTop: "12%",
     //justifyContent: "center",
     backgroundColor: "#ededed"
   },
@@ -25,34 +25,34 @@ const styles = StyleSheet.create({
   },
   reqContainer: {
     width: "100%",
-     borderWidth: 0.4,
+    borderWidth: 0.4,
     padding: 15,
     borderColor: "grey",
     backgroundColor: "white"
   },
   scrollViewParent: {
     width: "100%",
-     height: "45%",
-     marginBottom:30,
-     borderRadius:100
+    height: "45%",
+    marginBottom: 30,
+    borderRadius: 100
   },
   scrollView: {
     width: "90%",
-    marginLeft:"5%",
-    borderRadius:1,
+    marginLeft: "5%",
+    borderRadius: 1,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 3,
+      height: 3
     },
     shadowOpacity: 0.27,
     shadowRadius: 4.65,
-    elevation: 6,
+    elevation: 6
   },
   TextLbl: {
     fontWeight: "bold",
     fontSize: 20,
-    marginBottom  :15
+    marginBottom: 15
   }
 });
 
@@ -109,10 +109,10 @@ class Requests extends React.Component {
         <Text style={styles.TextLbl}>Pending Requests</Text>
         <View style={styles.scrollViewParent}>
           <ScrollView style={styles.scrollView}>
-            {this.state.list.map((ent,i) => {
+            {this.state.list.map((ent, i) => {
               return (
                 <TouchableHighlight
-                key={i}
+                  key={i}
                   onPress={() => this.reqCicked(ent)}
                   underlayColor="white"
                 >
@@ -124,8 +124,8 @@ class Requests extends React.Component {
               );
             })}
           </ScrollView>
-          </View>
-          <Text style={styles.TextLbl}>Explore</Text>
+        </View>
+        <Text style={styles.TextLbl}>Explore</Text>
         <View style={styles.btn}>
           <Button
             color="#384499"

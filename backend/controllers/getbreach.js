@@ -6,7 +6,7 @@ exports.getbreach = function(req, res) {
       $match: {
         "user.username": {
           $eq: req.body.username
-         // $eq: "sojan"
+          // $eq: "sojan"
         }
       }
     },
@@ -16,7 +16,7 @@ exports.getbreach = function(req, res) {
         _id: 0
       }
     },
-    { $unwind: "$receivedBreach" },
+    { $unwind: "$receivedBreach" }
   ];
   var promise = User.aggregate(pipeline).exec();
   promise

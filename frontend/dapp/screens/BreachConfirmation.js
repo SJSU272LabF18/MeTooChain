@@ -49,8 +49,8 @@ class BreachConfirmation extends React.Component {
       <View style={styles.body}>
         <View style={styles.reqContainer}>
           <Text style={styles.reqText}>
-            A Breach has been filed against {" "}
-            {itemObj.sendername} by {itemObj.preference}
+            A Breach has been filed against {itemObj.sendername} by{" "}
+            {itemObj.preference}
           </Text>
         </View>
         <View style={styles.btn}>

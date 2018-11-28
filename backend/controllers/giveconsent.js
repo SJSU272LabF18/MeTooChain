@@ -3,27 +3,27 @@ exports.giveconsent = function(req, res) {
   var results = {};
   User.update(
     {
-      "user.username": "sojan",
+      "user.username": req.body.receivername, //req.body.receivername
       requests: {
         $elemMatch: {
-          sendername: "john doe"
+          sendername: req.body.sendername //req.body.sendername
         }
       }
     },
-    { $set: { "requests.$.status": 3 } },
+    { $set: { "requests.$.status": req.body.status } }, //req.body.status
     function(err, result) {
       if (result) {
         // results.code = 200;
         User.update(
           {
-            "user.username": "john doe",
+            "user.username": req.body.sendername, //req.body.sendername
             sentrequests: {
               $elemMatch: {
-                receivername: "sojan"
+                receivername: req.body.receivername //req.body.receivername
               }
             }
           },
-          { $set: { "sentrequests.$.status": 3 } },
+          { $set: { "sentrequests.$.status": req.body.status } }, //req.body.status
           function(err, result) {
             if (err) {
               res.code = "400";

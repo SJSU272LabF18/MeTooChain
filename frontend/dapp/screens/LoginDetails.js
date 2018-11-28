@@ -32,22 +32,22 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: "gray",
     backgroundColor: "white",
-  //  borderWidth: 0.4,
+    //  borderWidth: 0.4,
     //  borderRadius:15,
     textAlign: "center",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 3,
+      height: 3
     },
     shadowOpacity: 0.27,
     shadowRadius: 4.65,
-    elevation: 3,
+    elevation: 3
   },
   btn: {
     textAlign: "center",
     width: "90%",
-    marginTop:50,
+    marginTop: 50,
     borderRadius: 5
   },
   TextParent: {
@@ -59,10 +59,10 @@ const styles = StyleSheet.create({
 });
 
 class LoginDetails extends React.Component {
-  state={
-    username:"username",
-    password:"password"
-  }
+  state = {
+    username: "username",
+    password: "password"
+  };
   userSignup = () => {
     const url = USERCONSTANTS.ROOTURL + "login";
     // Alert.alert(url);
@@ -84,9 +84,9 @@ class LoginDetails extends React.Component {
         //   "Signup Success!",
         //   "Click the button to get a Chuck Norris quote!"
         // );
-       if(responseData.message!="Succesfull login"){
-        Alert.alert(responseData.message);
-       }
+        if (responseData.message != "Succesfull login") {
+          Alert.alert(responseData.message);
+        }
         console.log(this.props);
         try {
           AsyncStorage.setItem("username", this.state.username).then(
@@ -106,16 +106,24 @@ class LoginDetails extends React.Component {
           Please Enter Your Username and Passwordd
         </Text>
         <View style={styles.TextParent}>
-          <TextInput 
-           onChangeText={(text) => this.setState({...this.state,username:text})}
-          style={styles.textBox} value={this.state.username} />
+          <TextInput
+            onChangeText={text =>
+              this.setState({ ...this.state, username: text })
+            }
+            style={styles.textBox}
+            value={this.state.username}
+          />
         </View>
         <View style={styles.TextParent}>
-          <TextInput 
-          password={true}
-          secureTextEntry={true}
-           onChangeText={(text) => this.setState({...this.state,password:text})}
-          style={styles.textBox} value={this.state.password} />
+          <TextInput
+            password={true}
+            secureTextEntry={true}
+            onChangeText={text =>
+              this.setState({ ...this.state, password: text })
+            }
+            style={styles.textBox}
+            value={this.state.password}
+          />
         </View>
         <View style={styles.btn}>
           <Button color="#384499" title="Login" onPress={this.userSignup} />
