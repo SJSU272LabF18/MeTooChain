@@ -160,7 +160,9 @@ exports.create = async (req, res) => {
       ipfsHash: req.data.ipfsHash,
       ipfsAddress: `https://gateway.ipfs.io/ipfs/${req.data.ipfsHash}`,
       transactionHash: req.data.ipfsHash,
-      blockHash: req.data.blockHash
+      blockHash: req.data.blockHash,
+      senderName:req.body.sendername,
+      receiverName:req.body.user
     };
     const resp = await Image.create(data);
     res.send(resp);
