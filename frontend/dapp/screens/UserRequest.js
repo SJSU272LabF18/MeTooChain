@@ -100,7 +100,7 @@ class UserRequest extends React.Component {
           .then(responseData => {
             console.log("inside consent route");
             // Alert.alert(JSON.stringify(responseData));
-            if (itemObj.navigation == itemObj.navigation) {
+            if (itemObj.navigation == "DenyConsent") {
               this.props.navigation.navigate("DenyConsent", {
                 DenyCon: JSON.stringify(itemObj)
               });

@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#eb3b5a"
+    backgroundColor: "#ededed"
   },
   btn: {
     width: "90%",
@@ -49,8 +49,7 @@ class DenyConsent extends React.Component {
       <View style={styles.body}>
         <View style={styles.reqContainer}>
           <Text style={styles.reqText}>
-            Consent has been denied for {itemObj.sendername} by{" "}
-            {itemObj.preference}
+            Consent has been denied for {itemObj.sendername}
           </Text>
         </View>
         <View style={styles.btn}>
