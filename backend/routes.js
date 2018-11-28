@@ -131,7 +131,7 @@ const filepath =
 
 router.post("/getProfileImg", function(req, res, next) {
   console.log("image body", req.body);
-  var username = "Amy"; //req.body.username
+  var username = req.body.username; //req.body.username
   //console.log("req.session.username for image", req.session.username);
   var filter = ".png";
   var results = [];

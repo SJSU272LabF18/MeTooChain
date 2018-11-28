@@ -91,12 +91,12 @@ class UserProfile extends React.Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        username: "sojan" // this.state.username//"sojan"
+        username: "Stacy" // this.state.username//"sojan"
       })
     })
       .then(response => response.json())
       .then(responseData => {
-        Alert.alert(responseData.user);
+        //Alert.alert(responseData.user);
         // photos.push(responseData.data);
         this.setState({
           photo: responseData.img
