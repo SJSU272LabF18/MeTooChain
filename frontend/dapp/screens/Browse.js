@@ -55,6 +55,7 @@ class Browse extends React.Component {
         age: "28"
       },
       {
+<<<<<<< HEAD
         name: "Amy",
         age: "23"
       },
@@ -65,6 +66,24 @@ class Browse extends React.Component {
     ],
 
     ProfilePhotos: []
+=======
+        name: "Amanda",
+        age: "23"
+      },
+      {
+        name: "Catherine",
+        age: "22"
+      },
+      {
+        name: "Taylor",
+        age: "23"
+      } ,
+      {
+        name: "John",
+        age: "23"
+      } 
+    ]
+>>>>>>> master
   };
   // componentDidMount() {
   //   const url = USERCONSTANTS.ROOTURL + "getProfileImg";
@@ -135,24 +154,15 @@ class Browse extends React.Component {
   //   });
   // }
 
-  reqCicked = usr => {
+  reqCicked = abc => {
     this.props.navigation.navigate("UserProfile", {
-      profileInfo: usr
+      profileInfo: abc
     });
   };
   constructor(props) {
     super(props);
     this.reqCicked = this.reqCicked.bind(this);
   }
-  // usrSelect = usr => {
-  //   this.props.navigation.navigate("Browse", {
-  //     userInfo: usr
-  //   });
-  // };
-  // constructor(props) {
-  //   super(props);
-  //   this.usrSelect = this.usrSelect.bind(this);
-  // }
 
   render() {
     const { navigation } = this.props;

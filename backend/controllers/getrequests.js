@@ -5,7 +5,7 @@ exports.getrequests = function(req, res) {
     {
       $match: {
         "user.username": {
-          $eq: "sojan"
+          $eq: req.body.username
         }
       }
     },

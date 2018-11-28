@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import * as USERCONSTANTS from "../Helpers/helper";
 import {
   View,
   Text,
@@ -7,10 +6,19 @@ import {
   StyleSheet,
   ScrollView,
   AsyncStorage,
-  Alert,
-  Image
+  Alert
 } from "react-native";
-
+import * as USERCONSTANTS from "../Helpers/helper";
+import RadioForm, {
+  RadioButton,
+  RadioButtonInput,
+  RadioButtonLabel
+} from "react-native-simple-radio-button";
+var radio_props = [
+  { label: "First Base - You are ready to go on a Date", value: 0 },
+  { label: "Second Base - Open to some casual intimacy", value: 1 },
+  { label: "Third Base - Ready to go  distance", value: 2 }
+];
 const styles = StyleSheet.create({
   body: {
     flex: 1,
@@ -45,6 +53,18 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     padding: 15
   },
+  imgContainer: {
+    height: "15%",
+    width: "25%",
+    borderWidth: 0.4,
+    padding: 5,
+    justifyContent: "center",
+    borderRadius: 10,
+    borderColor: "grey",
+    backgroundColor: "white",
+    marginBottom: 30,
+    padding: 15
+  },
   reqText: {
     fontSize: 17
   },
@@ -64,23 +84,27 @@ const styles = StyleSheet.create({
 
 class UserProfile extends React.Component {
   state = {
-    list: [
-      {
-        name: "John Doe",
-        message: "fling",
-        hobbies: "netflix and chill"
-      },
-      {
-        name: "John Cho",
-        message: "casual date"
-      },
-      {
-        name: "John Abraham",
-        message: "flirting"
-      }
-    ],
+    value: 0,
     photo: {}
   };
+  // state = {
+  //   list: [
+  //     {
+  //       name: "John Doe",
+  //       message: "fling",
+  //       hobbies: "netflix and chill"
+  //     },
+  //     {
+  //       name: "John Cho",
+  //       message: "casual date"
+  //     },
+  //     {
+  //       name: "John Abraham",
+  //       message: "flirting"
+  //     }
+  //   ],
+
+  // };
   componentDidMount() {
     //  Alert.alert("hi");
     const url = USERCONSTANTS.ROOTURL + "getProfileImg";
@@ -120,12 +144,13 @@ class UserProfile extends React.Component {
   generateConsentContract = async itemObj => {
     const userName = await AsyncStorage.getItem("username");
     const obj = {
-      user: userName,
-      sendername: itemObj.sendername,
-      preference: itemObj.preference
+      receivername: itemObj.name,
+      sendername: userName,
+      preference: radio_props[this.state.value].label,
+      level: this.state.value + 1
     };
-
-    fetch("http://10.0.0.102:5000/confirmContract", {
+    const url = USERCONSTANTS.ROOTURL + "requestconsent";
+    fetch(url, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -143,7 +168,6 @@ class UserProfile extends React.Component {
   };
   render() {
     const { navigation } = this.props;
-
     const itemId = navigation.getParam("profileInfo", "NO-ID");
     const itemObj = itemId;
 
@@ -166,17 +190,21 @@ class UserProfile extends React.Component {
             {itemObj.preference} . Please Select your preference below!
           </Text>
         </View>
+        <View style={styles.reqContainer}>
+          <RadioForm
+            radio_props={radio_props}
+            initial={0}
+            onPress={value => {
+              this.setState({ value: value });
+            }}
+          />
+        </View>
         <View style={styles.btn}>
           <Button
             color="#384499"
             title="Request Consent"
-            // onPress={() => {
-            //  this.generateConsentContract(itemObj);
-            // }}
             onPress={() => {
-              this.props.navigation.navigate("RequestConfirmation", {
-                requestconfirm: JSON.stringify(itemObj)
-              });
+              this.generateConsentContract(itemObj);
             }}
           />
         </View>
@@ -186,22 +214,11 @@ class UserProfile extends React.Component {
             title="File Breach"
             onPress={() => {
               this.props.navigation.navigate("BreachConfirmation", {
-                breachConfirm: JSON.stringify(itemObj)
+                breachConfirm: obj
               });
             }}
           />
         </View>
-        {/* <View style={styles.btn}>
-          <Button
-            color="#384499"
-            title="Deny Consent"
-            onPress={() => {
-              this.props.navigation.navigate("DenyConsent" ,{
-                DenyCon:JSON.stringify(itemObj)
-              });
-            }}
-          />
-        </View> */}
       </View>
     );
   }

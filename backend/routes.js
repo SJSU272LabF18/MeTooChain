@@ -43,7 +43,7 @@ router.post("/login", function(req, res) {
   userlogin.login(req, res);
 });
 
-router.get("/requests", function(req, res) {
+router.post("/requests", function(req, res) {
   console.log("Inside requests route");
   requests.getrequests(req, res);
 });
@@ -83,6 +83,7 @@ router.post("/signup", function(req, res) {
   signup.usersignup(req, res);
 });
 
+<<<<<<< HEAD
 var username = "sojan";
 
 var storagePropFiles = multer.diskStorage({
@@ -164,6 +165,16 @@ router.post("/getProfileImg", function(req, res, next) {
     res.statusMessage = "invalid session";
     res.status(401).end();
   }
+=======
+router.post("/getContractByReceiver", function(req, res) {
+  console.log("Inside getContractByReceiver route");
+  confirmContract.findByReceiver(req, res);
+});
+
+router.post("/getContractBySender", function(req, res) {
+  console.log("Inside getContractBySender route");
+  confirmContract.findBySender(req, res);
+>>>>>>> master
 });
 
 module.exports = router;

@@ -63,7 +63,14 @@ class UserRequest extends React.Component {
     const obj = {
       user: userName,
       sendername: itemObj.sendername,
-      preference: itemObj.preference
+      preference: itemObj.preference,
+      status:itemObj.status
+    };
+    const obj2 = {
+      receivername: userName,
+      sendername: itemObj.sendername,
+      preference: itemObj.preference,
+      status:itemObj.status
     };
     ToastAndroid.show(
       "Generating Contract. Please wait!",
@@ -87,16 +94,23 @@ class UserRequest extends React.Component {
             Accept: "application/json",
             "Content-Type": "application/json"
           },
-          body: JSON.stringify(obj)
+          body: JSON.stringify(obj2)
         })
           .then(response => response.json())
           .then(responseData => {
             console.log("inside consent route");
             // Alert.alert(JSON.stringify(responseData));
-            this.props.navigation.navigate("ContractConfirmation", {
+            if(itemObj.navigation==itemObj.navigation){
+              this.props.navigation.navigate("DenyConsent", {
+                DenyCon: JSON.stringify(itemObj)
+              });
+            }else{
+            this.props.navigation.navigate(itemObj.navigation, {
               contractConfirm: JSON.stringify(itemObj)
             });
+          }
           });
+        
 
         //  // Alert.alert(JSON.stringify(responseData));
         //   this.props.navigation.navigate("ContractConfirmation",{
@@ -122,6 +136,8 @@ class UserRequest extends React.Component {
             color="#384499"
             title="Give Consent"
             onPress={() => {
+              itemObj.navigation="ContractConfirmation";
+              itemObj.status="Accepted";
               this.generateConsentContract(itemObj);
             }}
           />
@@ -132,7 +148,7 @@ class UserRequest extends React.Component {
             title="Modify Consent"
             onPress={() => {
               this.props.navigation.navigate("ModifyConsent", {
-                userInformation: JSON.stringify(itemObj)
+                userInformation: itemObj
               });
             }}
           />
@@ -142,9 +158,11 @@ class UserRequest extends React.Component {
             color="#384499"
             title="Deny Consent"
             onPress={() => {
-              this.props.navigation.navigate("DenyConsent", {
-                DenyCon: JSON.stringify(itemObj)
-              });
+              itemObj.preference="Consent Denied";
+              itemObj.status="Denied";
+              itemObj.navigation="DenyConsent";
+              this.generateConsentContract(itemObj);
+             
             }}
           />
         </View>

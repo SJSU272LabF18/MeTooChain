@@ -7,7 +7,8 @@ import {
   Button,
   StyleSheet,
   ScrollView,
-  TouchableHighlight
+  TouchableHighlight,
+  AsyncStorage
 } from "react-native";
 
 const styles = StyleSheet.create({
@@ -60,28 +61,32 @@ class Requests extends React.Component {
   state = {
     list: [
       {
-        name: "John Doe",
+        name: "John",
         message: "fling"
       },
       {
-        name: "John Cho",
+        name: "abc",
         message: "casual date"
       },
       {
         name: "John Abraham",
-        message: "flirting"
+        message: "asdsaq"
       }
     ]
   };
 
-  componentDidMount() {
+  componentDidMount = async () => {
     const url = USERCONSTANTS.ROOTURL + "requests";
+    const userName = await AsyncStorage.getItem("username");
     fetch(url, {
-      method: "GET",
+      method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
-      }
+      },
+      body: JSON.stringify({
+        username: userName
+      })
     })
       .then(response => response.json())
       .then(responseData => {
@@ -89,7 +94,7 @@ class Requests extends React.Component {
         this.setState({ list: responseData.value[0].requests });
       })
       .done();
-  }
+  };
   reqCicked = usr => {
     this.props.navigation.navigate("userRequest", {
       userInfo: usr
@@ -110,18 +115,20 @@ class Requests extends React.Component {
         <View style={styles.scrollViewParent}>
           <ScrollView style={styles.scrollView}>
             {this.state.list.map((ent, i) => {
-              return (
-                <TouchableHighlight
-                  key={i}
-                  onPress={() => this.reqCicked(ent)}
-                  underlayColor="white"
-                >
-                  <View style={styles.reqContainer}>
-                    <Text>{ent.sendername}</Text>
-                    <Text>Requesting consent for {ent.preference}</Text>
-                  </View>
-                </TouchableHighlight>
-              );
+              if (ent.status == "Pending") {
+                return (
+                  <TouchableHighlight
+                    key={i}
+                    onPress={() => this.reqCicked(ent)}
+                    underlayColor="white"
+                  >
+                    <View style={styles.reqContainer}>
+                      <Text>{ent.sendername}</Text>
+                      <Text>Requesting consent for {ent.preference}</Text>
+                    </View>
+                  </TouchableHighlight>
+                );
+              }
             })}
           </ScrollView>
         </View>
@@ -140,7 +147,7 @@ class Requests extends React.Component {
             }}
           />
         </View>
-        <View style={styles.btn}>
+        {/* <View style={styles.btn}>
           <Button
             color="#384499"
             title="File Breach"
@@ -148,7 +155,7 @@ class Requests extends React.Component {
               this.props.navigation.navigate({ routeName: "" });
             }}
           />
-        </View>
+        </View> */}
       </View>
     );
   }

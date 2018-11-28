@@ -45,4 +45,4 @@ exports.giveconsent = function(req, res) {
     results.code = "400";
     res.status(400).send(result);
   });
-};
+}
