@@ -7,7 +7,9 @@ import {
   Button,
   StyleSheet,
   ScrollView,
-  TouchableHighlight
+  TouchableHighlight,
+  AsyncStorage,
+  Linking
 } from "react-native";
 
 const styles = StyleSheet.create({
@@ -48,37 +50,47 @@ const styles = StyleSheet.create({
 
 class Contracts extends React.Component {
   state = {
-    list: [
-      {
-        name: "John Doe",
-        message: "fling"
-      },
-      {
-        name: "John Cho",
-        message: "casual date"
-      },
-      {
-        name: "John Abraham",
-        message: "flirting"
-      }
-    ]
+   sent:[],
+   received:[]
   };
 
-  componentDidMount() {
-    const url = USERCONSTANTS.ROOTURL + "requests";
+  componentDidMount=async()=> {
+    const url = USERCONSTANTS.ROOTURL + "getContractByReceiver";
+    const url2 = USERCONSTANTS.ROOTURL + "getContractBySender";
+    const userName = await AsyncStorage.getItem("username");
     fetch(url, {
-      method: "GET",
+      method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
-      }
+      },
+      body: JSON.stringify({
+        receiver: userName
+      })
     })
       .then(response => response.json())
       .then(responseData => {
-        console.log("response is", responseData.value[0].requests);
-        this.setState({ list: responseData.value[0].requests });
+       // Alert.alert(JSON.stringify(responseData));
+        // console.log("response is", responseData.value[0].requests);
+         this.setState({ received: responseData});
+      });
+
+      fetch(url2, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          sender: userName
+        })
       })
-      .done();
+        .then(response => response.json())
+        .then(responseData => {
+         // Alert.alert(JSON.stringify(responseData));
+          // console.log("response is", responseData.value[0].requests);
+           this.setState({ sent: responseData });
+        })
   }
   reqCicked = usr => {
     this.props.navigation.navigate("userRequest", {
@@ -96,18 +108,39 @@ class Contracts extends React.Component {
     return (
       <View style={styles.body}>
         {/* <Text>Pending Requests</Text> */}
-        <Text style={styles.TextLbl}>My Contracts</Text>
+        <Text style={styles.TextLbl}>Sent Contracts</Text>
         <ScrollView style={styles.scrollView}>
-          {this.state.list.map(ent => {
+          {this.state.sent.map(ent => {
             return (
               <TouchableHighlight
-                key={ent.sendername}
-                onPress={() => this.reqCicked(ent)}
+                key={ent._id}
+                onPress={()=>{
+                  Linking.openURL(ent.ipfsAddress).catch(err => console.error('An error occurred', err));
+                }}
                 underlayColor="white"
               >
                 <View style={styles.reqContainer}>
-                  <Text>{ent.sendername}</Text>
-                  <Text>Requesting consent for {ent.preference}</Text>
+                  <Text>{ent.receiverName}</Text>
+                  <Text>Contract URL : {ent.ipfsAddress}</Text>
+                </View>
+              </TouchableHighlight>
+            );
+          })}
+        </ScrollView>
+        <Text style={styles.TextLbl}>Received Contracts</Text>
+        <ScrollView style={styles.scrollView}>
+          {this.state.received.map(ent => {
+            return (
+              <TouchableHighlight
+                key={ent._id}
+                onPress={()=>{
+                  Linking.openURL(ent.ipfsAddress).catch(err => console.error('An error occurred', err));
+                }}
+                underlayColor="white"
+              >
+                <View style={styles.reqContainer}>
+                  <Text>{ent.senderName}</Text>
+                  <Text>Contract URL : {ent.ipfsAddress}</Text>
                 </View>
               </TouchableHighlight>
             );
