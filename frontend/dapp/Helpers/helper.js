@@ -1,1 +1,1 @@
-export const ROOTURL = "http://10.0.0.216:5000/";
+export const ROOTURL = "http://10.250.138.74:5000/";

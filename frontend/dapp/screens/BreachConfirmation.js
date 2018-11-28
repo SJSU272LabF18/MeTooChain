@@ -81,6 +81,7 @@ class BreachConfirmation extends React.Component {
   };
 
   logBreach = async itemObj => {
+    Alert.alert("hi");
     const url = USERCONSTANTS.ROOTURL + "filebreach";
     const userName = await AsyncStorage.getItem("username");
     const obj = {
@@ -88,6 +89,7 @@ class BreachConfirmation extends React.Component {
       sendername: itemObj.name,
       message: this.state.breach_desc
     };
+
     fetch(url, {
       method: "POST",
       headers: {
@@ -108,7 +110,9 @@ class BreachConfirmation extends React.Component {
     const { navigation } = this.props;
 
     const itemId = navigation.getParam("breachConfirm", "NO-ID");
-    const itemObj = JSON.parse(itemId);
+    // const itemId = navigation.getParam("breachConfirm", "itemObj");
+    const itemObj = itemId;
+
     return (
       <View style={styles.body}>
         <Text style={styles.TextLbl}>Describe details of breach</Text>

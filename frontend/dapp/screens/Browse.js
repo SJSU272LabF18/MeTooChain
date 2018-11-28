@@ -52,23 +52,28 @@ class Browse extends React.Component {
     list: [
       {
         name: "Stacy",
-        age: "28"
+        age: "28",
+        description: "Extrovert, fun loving"
       },
       {
         name: "Amanda",
-        age: "23"
+        age: "23",
+        description: " Fun loving, Pet-lover"
       },
       {
         name: "Catherine",
-        age: "22"
+        age: "22",
+        description: "Wanderlust"
       },
       {
         name: "Taylor",
-        age: "23"
+        age: "25",
+        description: "Foodie, Nature-lover, Tech-Savvy"
       },
       {
         name: "John",
-        age: "23"
+        age: "27",
+        description: " Shop-a-holic"
       }
     ]
   };
@@ -169,7 +174,9 @@ class Browse extends React.Component {
               >
                 <View style={styles.reqContainer}>
                   <Text>{ent.name}</Text>
+
                   <Text>Age: {ent.age}</Text>
+                  <Text> {ent.description}</Text>
                 </View>
               </TouchableHighlight>
             );

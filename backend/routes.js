@@ -12,7 +12,7 @@ const requestconsent = require("./controllers/requestconsent");
 const filebreach = require("./controllers/fileBreach");
 const getbreach = require("./controllers/getbreach");
 const uploadprofileimage = require("./controllers/uploadimage");
-
+var fs = require("fs");
 router.get("/", Image.test);
 router.get("/accounts", Image.accounts);
 router.get("/web3-status", Image.webStatus);
