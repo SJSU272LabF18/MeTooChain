@@ -6,7 +6,9 @@ import {
   Text,
   Button,
   StyleSheet,
-  ScrollView
+  AsyncStorage,
+  ScrollView,
+  ToastAndroid
 } from "react-native";
 import RadioForm, {
   RadioButton,
@@ -58,11 +60,67 @@ const styles = StyleSheet.create({
 });
 
 class ModifyConsent extends React.Component {
+  state = {
+    value:0
+    };
+  generateConsentContract = async itemObj => {
+    const url1 = USERCONSTANTS.ROOTURL + "confirmContract";
+    const url2 = USERCONSTANTS.ROOTURL + "giveconsent";
+    const userName = await AsyncStorage.getItem("username");
+    const obj = {
+      user: userName,
+      sendername: itemObj.sendername,
+      preference: itemObj.preference,
+      status:itemObj.status
+    };
+    const obj2 = {
+      receivername: userName,
+      sendername: itemObj.sendername,
+      preference: itemObj.preference,
+      status:itemObj.status
+    };
+    ToastAndroid.show('Generating Contract. Please wait!',ToastAndroid.CENTER, ToastAndroid.LONG);
+    fetch(url1, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(obj)
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        //  Alert.alert("hi");
+        fetch(url2, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(obj2)
+        })
+          .then(response => response.json())
+          .then(responseData => {
+            console.log("inside consent route");
+            // Alert.alert(JSON.stringify(responseData));
+           
+            this.props.navigation.navigate(itemObj.navigation, {
+              contractConfirm: JSON.stringify(itemObj)
+            });
+          });
+        
+
+        //  // Alert.alert(JSON.stringify(responseData));
+        //   this.props.navigation.navigate("ContractConfirmation",{
+        //     contractConfirm:JSON.stringify(itemObj)
+        //   });
+      });
+  };
   render() {
     const { navigation } = this.props;
 
     const itemId = navigation.getParam("userInformation", "NO-ID");
-    const itemObj = JSON.parse(itemId);
+    const itemObj = itemId;
     return (
       <View style={styles.body}>
         <View style={styles.reqContainer}>
@@ -88,9 +146,16 @@ class ModifyConsent extends React.Component {
             //   this.props.navigation.navigate({ routeName: "ContractConfirmation" });
             // }}
             onPress={() => {
-              this.props.navigation.navigate("ContractConfirmation", {
-                contractConfirm: JSON.stringify(itemObj)
-              });
+
+              itemObj.navigation="ContractConfirmation";
+              itemObj.status="Accepted";
+              if(itemObj.level>this.state.value+1){
+                itemObj.preference=radio_props[this.state.value].label;
+              }
+              this.generateConsentContract(itemObj);
+              // this.props.navigation.navigate("ContractConfirmation", {
+              //   contractConfirm: JSON.stringify(itemObj)
+              // });
             }}
           />
         </View>
