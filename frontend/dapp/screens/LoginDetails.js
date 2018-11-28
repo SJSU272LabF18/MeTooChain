@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
 
 class LoginDetails extends React.Component {
   state={
-    username:"username",
+    username:"sojan",
     password:"password"
   }
   userSignup = () => {

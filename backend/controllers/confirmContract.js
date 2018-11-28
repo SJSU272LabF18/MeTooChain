@@ -170,4 +170,43 @@ exports.create = async (req, res) => {
     res.status(500).send(err.message);
   }
 };
+
+exports.findBySender = async (req, res) => {
+  console.log("+++++++++++=Inside Find By Sender++++++++");
+  console.log(req.body.sender);
+  if (!req.body.sender) {
+    res.status(400).send("Please enter user id");
+  }
+  try {
+    const resp = await Image.find({ senderName: req.body.sender });
+    console.log(JSON.stringify(resp));
+    if (resp === null) {
+      res.status(404).send("User Not Found");
+    } else {
+      res.send(resp);
+    }
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+
+exports.findByReceiver = async (req, res) => {
+  console.log("++++++++Inside Find By Receiver+++++++++");
+  console.log(req.body.receiver);
+  if (!req.body.receiver) {
+    res.status(400).send("Please enter user id");
+  }
+  try {
+    const resp = await Image.find({ receiverName: req.body.receiver });
+    console.log(JSON.stringify(resp));
+    if (resp === null) {
+      res.status(404).send("User Not Found");
+    } else {
+      res.send(resp);
+    }
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+
 exports.confirmContract = () => {};

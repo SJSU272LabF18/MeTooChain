@@ -7,7 +7,8 @@ import {
   Button,
   StyleSheet,
   ScrollView,
-  TouchableHighlight
+  TouchableHighlight,
+  AsyncStorage
 } from "react-native";
 
 const styles = StyleSheet.create({
@@ -74,14 +75,18 @@ class Requests extends React.Component {
     ]
   };
 
-  componentDidMount() {
+  componentDidMount=async()=> {
     const url = USERCONSTANTS.ROOTURL + "requests";
+    const userName = await AsyncStorage.getItem("username");
     fetch(url, {
-      method: "GET",
+      method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
-      }
+      },
+      body:JSON.stringify({
+        username:userName
+      })
     })
       .then(response => response.json())
       .then(responseData => {
