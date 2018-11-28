@@ -1,21 +1,23 @@
 var User = require("../models/user");
 exports.filebreach = function(req, res) {
+
+  console.log(req.body)
   var results = {};
   var receivedobj = {
-    name: "Stacy", //req.body.sendername
-    message: "outraging the modesty" //req.body.preference
+    name:req.body.sendername,
+    message:req.body.message
     // level: 2, //req.body.level
     // status: 1 //1. req.body.status
   };
   var sentObject = {
-    name: "abc", //req.body.receivername
-    message: "outraging the modesty" //req.body.preference
+    name:req.body.receivername,
+    message:req.body.preference
     // level: 2, //req.body.level
     // status: 1 //req.body.status
   };
 
   User.findOneAndUpdate(
-    { "user.username": "abc" },
+    { "user.username": req.body.receivername },
     { $push: { receivedBreach: receivedobj } },
     function(err, doc) {
       if (err) {
@@ -25,7 +27,7 @@ exports.filebreach = function(req, res) {
         res.status(400).send({ message: "Could not file breach" });
       } else {
         User.findOneAndUpdate(
-          { "user.username": "Stacy" },
+          { "user.username": req.body.sendername },
           { $push: { filedbreach: sentObject } },
           function(err, doc) {
             if (err) {

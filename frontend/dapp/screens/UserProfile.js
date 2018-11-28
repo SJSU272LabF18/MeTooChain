@@ -45,6 +45,18 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     padding: 15
   },
+  imgContainer: {
+    height: "15%",
+    width: "25%",
+    borderWidth: 0.4,
+    padding: 5,
+    justifyContent: "center",
+    borderRadius: 10,
+    borderColor: "grey",
+    backgroundColor: "white",
+    marginBottom: 30,
+    padding: 15
+  },
   reqText: {
     fontSize: 17
   }
@@ -89,6 +101,8 @@ class UserProfile extends React.Component {
     const itemObj = itemId; 
     return (
       <View style={styles.body}>
+        <View style={styles.imgContainer}>
+        </View>
         <View style={styles.reqContainer}>
           <Text style={styles.reqText}>
           Requesting {itemObj.name} for consent. Please select one of the options below !

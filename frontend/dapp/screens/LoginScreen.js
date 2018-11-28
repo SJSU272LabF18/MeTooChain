@@ -37,7 +37,7 @@ class LoginScreen extends React.Component {
          color='#384499'
           title="Sign Up"
           onPress={() => {
-            this.props.navigation.navigate({routeName: 'Dapp'});
+            this.props.navigation.navigate({routeName: 'SignUp'});
           }}
         />
         </View>
