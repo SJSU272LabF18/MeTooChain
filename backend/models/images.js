@@ -16,6 +16,12 @@ const imageSchema = mongoose.Schema(
     },
     blockHash: {
       type: String
+    },
+    senderName:{
+      type:String
+    },
+    receiverName:{
+      type:String
     }
   },
   {
