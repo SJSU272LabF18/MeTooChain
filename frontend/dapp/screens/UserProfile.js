@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#eb3b5a"
+    // backgroundColor: "#eb3b5a"
+    backgroundColor: "#ededed"
   },
   btn: {
     width: "90%",
@@ -40,6 +41,24 @@ const styles = StyleSheet.create({
 });
 
 class UserProfile extends React.Component {
+    state = {
+        list: [
+          {
+            name: "John Doe",
+            message: "fling",
+            hobbies: "netflix and chill"
+          },
+          {
+            name: "John Cho",
+            message: "casual date"
+          },
+          {
+            name: "John Abraham",
+            message: "flirting"
+          }
+        ]
+      };
+
   generateConsentContract=async (itemObj)=>{
     const userName =await AsyncStorage.getItem('username');
     const obj={
@@ -69,12 +88,13 @@ class UserProfile extends React.Component {
 
     const itemId = navigation.getParam("profileInfo", "NO-ID");
     const itemObj = itemId;
+    
     return (
       <View style={styles.body}>
         <View style={styles.reqContainer}>
-          <Text style={styles.reqText}>
+        <Text style={styles.reqText}>
             {itemObj.sendername} is requesting consent for a{" "}
-            {itemObj.preference} . Please Select your preference below!
+            Description: {itemObj.preference} . Please Select your preference below!
           </Text>
         </View>
         <View style={styles.btn}>
@@ -85,8 +105,8 @@ class UserProfile extends React.Component {
             //  this.generateConsentContract(itemObj);
             // }}
             onPress={() => {
-                this.props.navigation.navigate("",{
-                  userInformation:JSON.stringify(itemObj)
+                this.props.navigation.navigate("RequestConfirmation",{
+                  requestconfirm:JSON.stringify(itemObj)
                 });
             }}
           />
@@ -96,8 +116,8 @@ class UserProfile extends React.Component {
             color="#384499"
             title="File Breach"
             onPress={() => {
-              this.props.navigation.navigate("",{
-                userInformation:JSON.stringify(itemObj)
+              this.props.navigation.navigate("BreachConfirmation",{
+                breachConfirm:JSON.stringify(itemObj)
               });
             }}
           />
@@ -115,6 +135,7 @@ class UserProfile extends React.Component {
         </View> */}
       </View>
     );
+
   }
 }
 
