@@ -61,16 +61,16 @@ class Requests extends React.Component {
   state = {
     list: [
       {
-        name: "John Doe",
+        name: "John",
         message: "fling"
       },
       {
-        name: "John Cho",
+        name: "abc",
         message: "casual date"
       },
       {
         name: "John Abraham",
-        message: "flirting"
+        message: "asdsaq"
       }
     ]
   };

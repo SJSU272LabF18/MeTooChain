@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { View, Text, Button, StyleSheet, ScrollView } from "react-native";
+import { View, Text, Button, StyleSheet,TextInput, Alert,AsyncStorage, ScrollView } from "react-native";
 import * as USERCONSTANTS from "../Helpers/helper";
 const styles = StyleSheet.create({
   body: {
@@ -40,12 +40,61 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 5
   },
+  TextLbl: {
+    fontWeight: "bold",
+    fontSize: 20,
+    marginBottom  :15
+  },
+  textBox: {
+    height: 80,
+    borderColor: "gray",
+    backgroundColor: "white",
+  //  borderWidth: 0.4,
+    //  borderRadius:15,
+    textAlign: "left",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 3,
+  },
   reqText: {
     fontSize: 17
   }
 });
 
 class BreachConfirmation extends React.Component {
+  state={
+    breach_desc:"sojan"
+  }
+  
+  logBreach = async itemObj => {
+    const url = USERCONSTANTS.ROOTURL + "filebreach";
+    const userName = await AsyncStorage.getItem("username");
+    const obj = {
+      user: userName,
+      sendername: itemObj.name,
+      message : this.state.breach_desc
+    };
+    fetch(url, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(obj)
+    })
+    .then(response => response.json())
+    .then(responseData => {
+      Alert.alert("Breach filed successfully")
+      this.props.navigation.navigate({ routeName: "Browse" });
+      })
+      .done();
+  }
+
   render() {
     const { navigation } = this.props;
 
@@ -53,11 +102,23 @@ class BreachConfirmation extends React.Component {
     const itemObj = JSON.parse(itemId);
     return (
       <View style={styles.body}>
+      <Text style={styles.TextLbl}>Describe details of breach</Text>
         <View style={styles.reqContainer}>
-          <Text style={styles.reqText}>
-            A Breach has been filed against {" "}
-            {itemObj.sendername} by {itemObj.preference}
-          </Text>
+          <TextInput style={styles.textBox} 
+          onChangeText={(text) => this.setState({...this.state,breach_desc:text})}
+          /> 
+        </View>
+        <View style={styles.btn}>
+          <Button
+            color="#384499"
+            title="Submit"
+            onPress={()=>this.logBreach(itemObj)}
+            // onPress={() => {
+            //   Alert.alert("Breach filed successfully")
+
+            //   // this.props.navigation.navigate({ routeName: "Browse" });
+            // }}
+          />
         </View>
         <View style={styles.btn}>
           <Button

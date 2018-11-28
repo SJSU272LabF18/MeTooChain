@@ -15,11 +15,15 @@ import Browse from './screens/Browse';
 import UserProfile from './screens/UserProfile';
 import RequestConfirmation from './screens/RequestConfirmation';
 import BreachConfirmation from './screens/BreachConfirmation';
+import SignUpScreen from './screens/SignUpScreen';
 
 
 const AppNavigator = createStackNavigator({
   Home: {
     screen: HomeScreen
+  },
+  SignUp:{
+    screen:SignUpScreen
   },
   Login:{
     screen:LoginScreen
