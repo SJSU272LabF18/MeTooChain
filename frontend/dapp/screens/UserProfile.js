@@ -61,7 +61,7 @@ class UserProfile extends React.Component {
       receivername:itemObj.name,
       sendername:userName,
       preference:radio_props[this.state.value].label,
-      level:1
+      level:this.state.value+1
     };
     const url = USERCONSTANTS.ROOTURL + "requestconsent";
     fetch(url, {

@@ -144,7 +144,7 @@ class UserRequest extends React.Component {
             title="Modify Consent"
             onPress={() => {
               this.props.navigation.navigate("ModifyConsent", {
-                userInformation: JSON.stringify(itemObj)
+                userInformation: itemObj
               });
             }}
           />
