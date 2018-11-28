@@ -115,6 +115,7 @@ class Requests extends React.Component {
         <View style={styles.scrollViewParent}>
           <ScrollView style={styles.scrollView}>
             {this.state.list.map((ent,i) => {
+              if(ent.status=="Pending"){
               return (
                 <TouchableHighlight
                 key={i}
@@ -127,6 +128,7 @@ class Requests extends React.Component {
                   </View>
                 </TouchableHighlight>
               );
+            }
             })}
           </ScrollView>
           </View>

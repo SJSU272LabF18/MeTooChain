@@ -43,17 +43,25 @@ class Browse extends React.Component {
   state = {
     list: [
       {
-        name: "John Doe",
+        name: "Stacy",
         age: "28"
       },
       {
-        name: "John Cho",
+        name: "Amanda",
         age: "23"
       },
       {
-        name: "John Abraham",
-        age: "35"
-      }
+        name: "Catherine",
+        age: "22"
+      },
+      {
+        name: "Taylor",
+        age: "23"
+      } ,
+      {
+        name: "John",
+        age: "23"
+      } 
     ]
   };
 
