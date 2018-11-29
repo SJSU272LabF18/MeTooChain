@@ -56,7 +56,7 @@ router.post(
 );
 
 router.post("/giveconsent", function(req, res) {
-  console.log("Inside consent route");
+  console.log("Inside give consent route");
   consent.giveconsent(req, res);
 });
 
