@@ -1,5 +1,6 @@
 var User = require("../models/user");
 exports.giveconsent = function(req, res) {
+  console.log("give consent body", req.body);
   var results = {};
   User.update(
     {
@@ -45,4 +46,4 @@ exports.giveconsent = function(req, res) {
     results.code = "400";
     res.status(400).send(result);
   });
-}
+};

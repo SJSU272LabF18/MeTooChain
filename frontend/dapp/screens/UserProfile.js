@@ -164,10 +164,12 @@ class UserProfile extends React.Component {
     })
       .then(response => response.json())
       .then(responseData => {
+        Alert.alert("Your consent selection has been sent");
+        this.props.navigation.navigate("Browse");
         // Alert.alert(JSON.stringify(responseData));
-        this.props.navigation.navigate("ContractConfirmation", {
-          contractConfirm: JSON.stringify(itemObj)
-        });
+        // this.props.navigation.navigate("ContractConfirmation", {
+        //   contractConfirm: JSON.stringify(itemObj)
+        // });
       });
   };
   render() {
@@ -204,9 +206,7 @@ class UserProfile extends React.Component {
             color="#384499"
             title="Request Consent"
             onPress={() => {
-              Alert.alert("Your consent selection has been sent")
-              this.props.navigation.navigate("Browse")
-              // this.generateConsentContract(itemObj);
+              this.generateConsentContract(itemObj);
             }}
           />
         </View>

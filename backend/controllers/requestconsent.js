@@ -1,5 +1,6 @@
 var User = require("../models/user");
 exports.requestconsent = function(req, res) {
+  console.log("request consent body", req.body);
   var sentObject = {
     sendername: req.body.sendername,
     preference: req.body.preference,
