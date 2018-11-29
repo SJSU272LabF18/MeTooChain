@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ScrollView,
   AsyncStorage,
+  Image,
   Alert
 } from "react-native";
 import * as USERCONSTANTS from "../Helpers/helper";
@@ -115,7 +116,7 @@ class UserProfile extends React.Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        username: "Stacy" // this.state.username//"sojan"
+        username: "John" // this.state.username//"sojan"
       })
     })
       .then(response => response.json())
@@ -204,7 +205,9 @@ class UserProfile extends React.Component {
             color="#384499"
             title="Request Consent"
             onPress={() => {
-              this.generateConsentContract(itemObj);
+              Alert.alert("Your consent selection has been sent")
+              this.props.navigation.navigate("Browse")
+              // this.generateConsentContract(itemObj);
             }}
           />
         </View>

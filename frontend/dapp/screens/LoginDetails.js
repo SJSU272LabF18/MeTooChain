@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
 
 class LoginDetails extends React.Component {
   state = {
-    username: "John",
-    password: "password"
+    username: "",
+    password: ""
   };
   userSignup = () => {
     const url = USERCONSTANTS.ROOTURL + "login";
@@ -103,10 +103,11 @@ class LoginDetails extends React.Component {
     return (
       <View style={[styles.header, styles.body]}>
         <Text style={styles.header}>
-          Please Enter Your Username and Passwordd
+          Please Enter Your Username and Password
         </Text>
         <View style={styles.TextParent}>
           <TextInput
+            placeholder="username"
             onChangeText={text =>
               this.setState({ ...this.state, username: text })
             }
@@ -116,6 +117,7 @@ class LoginDetails extends React.Component {
         </View>
         <View style={styles.TextParent}>
           <TextInput
+            placeholder="Enter password"
             password={true}
             secureTextEntry={true}
             onChangeText={text =>
