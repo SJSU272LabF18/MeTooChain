@@ -56,6 +56,11 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 5
   },
+  TextLbl: {
+    fontWeight: "bold",
+    fontSize: 20,
+    marginBottom: 15
+  },
   imgContainer: {
     height: "5%",
     width: "60%",
@@ -72,8 +77,11 @@ const styles = StyleSheet.create({
 
 class SignUpScreen extends React.Component {
   state={
-    username:"sojan",
-    password:"password"
+    username:"",
+    password:"",
+    signupuser:"",
+    nid:"",
+    contact:""
   }
   userSignup = () => {
     const url = USERCONSTANTS.ROOTURL + "login";
@@ -114,23 +122,33 @@ class SignUpScreen extends React.Component {
   render() {
     return (
       <View style={[styles.header, styles.body]}>
-        <Text style={styles.header}>
+        <Text style={styles.TextLbl}>
           Sign Up Details
         </Text>
         <View style={styles.TextParent}>
           <TextInput 
-           onChangeText={(text) => this.setState({...this.state,username:text})}
-          style={styles.textBox} value={this.state.username} />
+          placeholder="Enter username"
+           onChangeText={(text) => this.setState({...this.state,signupuser:text})}
+          style={styles.textBox} value={this.state.signupuser} />
         </View>
         <View style={styles.TextParent}>
           <TextInput 
-          password={true}
-          secureTextEntry={true}
-           onChangeText={(text) => this.setState({...this.state,password:text})}
-          style={styles.textBox} value={this.state.password} />
+           placeholder="Enter National Identification number"
+           onChangeText={(text) => this.setState({...this.state,nid:text})}
+          style={styles.textBox} value={this.state.nid} />
+        </View>
+        <View style={styles.TextParent}>
+          <TextInput 
+          placeholder="Enter your contact number"
+           onChangeText={(text) => this.setState({...this.state,contact:text})}
+          style={styles.textBox} value={this.state.contact} />
         </View>
         <View style={styles.btn}>
-          <Button color="#384499" title="Sign Up" onPress={this.userSignup} />
+          <Button color="#384499" title="Submit" 
+          onPress={()=>{
+            Alert.alert("Sign up successful")
+            this.props.navigation.navigate("LoginDetails")
+          }} />
         </View>
       </View>
     );

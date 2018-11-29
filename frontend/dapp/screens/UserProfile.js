@@ -204,7 +204,9 @@ class UserProfile extends React.Component {
             color="#384499"
             title="Request Consent"
             onPress={() => {
-              this.generateConsentContract(itemObj);
+              Alert.alert("Your consent selection has been sent")
+              this.props.navigation.navigate("Browse")
+              // this.generateConsentContract(itemObj);
             }}
           />
         </View>
