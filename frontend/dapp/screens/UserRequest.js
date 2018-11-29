@@ -64,13 +64,13 @@ class UserRequest extends React.Component {
       user: userName,
       sendername: itemObj.sendername,
       preference: itemObj.preference,
-      status:itemObj.status
+      status: itemObj.status
     };
     const obj2 = {
       receivername: userName,
       sendername: itemObj.sendername,
       preference: itemObj.preference,
-      status:itemObj.status
+      status: itemObj.status
     };
     ToastAndroid.show(
       "Generating Contract. Please wait!",
@@ -100,17 +100,16 @@ class UserRequest extends React.Component {
           .then(responseData => {
             console.log("inside consent route");
             // Alert.alert(JSON.stringify(responseData));
-            if(itemObj.navigation==itemObj.navigation){
+            if (itemObj.navigation == "DenyConsent") {
               this.props.navigation.navigate("DenyConsent", {
                 DenyCon: JSON.stringify(itemObj)
               });
-            }else{
-            this.props.navigation.navigate(itemObj.navigation, {
-              contractConfirm: JSON.stringify(itemObj)
-            });
-          }
+            } else {
+              this.props.navigation.navigate(itemObj.navigation, {
+                contractConfirm: JSON.stringify(itemObj)
+              });
+            }
           });
-        
 
         //  // Alert.alert(JSON.stringify(responseData));
         //   this.props.navigation.navigate("ContractConfirmation",{
@@ -136,8 +135,8 @@ class UserRequest extends React.Component {
             color="#384499"
             title="Give Consent"
             onPress={() => {
-              itemObj.navigation="ContractConfirmation";
-              itemObj.status="Accepted";
+              itemObj.navigation = "ContractConfirmation";
+              itemObj.status = "Accepted";
               this.generateConsentContract(itemObj);
             }}
           />
@@ -158,11 +157,10 @@ class UserRequest extends React.Component {
             color="#384499"
             title="Deny Consent"
             onPress={() => {
-              itemObj.preference="Consent Denied";
-              itemObj.status="Denied";
-              itemObj.navigation="DenyConsent";
+              itemObj.preference = "Consent Denied";
+              itemObj.status = "Denied";
+              itemObj.navigation = "DenyConsent";
               this.generateConsentContract(itemObj);
-             
             }}
           />
         </View>

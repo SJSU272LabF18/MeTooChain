@@ -16,6 +16,7 @@ import UserProfile from './screens/UserProfile';
 import RequestConfirmation from './screens/RequestConfirmation';
 import BreachConfirmation from './screens/BreachConfirmation';
 import SignUpScreen from './screens/SignUpScreen';
+import OverLay from './screens/OverLay';
 
 
 const AppNavigator = createStackNavigator({
@@ -45,6 +46,9 @@ const AppNavigator = createStackNavigator({
   },
   Browse:{
     screen:Browse
+  },
+  OverLay:{
+    screen:OverLay
   },
   UserProfile:{
     screen:UserProfile

@@ -6,8 +6,8 @@ import {
   StyleSheet,
   ScrollView,
   AsyncStorage,
-  Image,
-  Alert
+  Alert,
+  Image
 } from "react-native";
 import * as USERCONSTANTS from "../Helpers/helper";
 import RadioForm, {
@@ -107,7 +107,10 @@ class UserProfile extends React.Component {
 
   // };
   componentDidMount() {
-    //  Alert.alert("hi");
+    const { navigation } = this.props;
+    const itemId = navigation.getParam("profileInfo", "NO-ID");
+    const itemObj = itemId;
+    //  Alert.alert(itemObj.name);
     const url = USERCONSTANTS.ROOTURL + "getProfileImg";
     fetch(url, {
       method: "POST",
@@ -116,7 +119,7 @@ class UserProfile extends React.Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        username: "John" // this.state.username//"sojan"
+        username: itemObj.name // this.state.username//"sojan"
       })
     })
       .then(response => response.json())
@@ -177,18 +180,14 @@ class UserProfile extends React.Component {
         <View style={styles.imgContainer}>
           <Image
             style={{ width: 66, height: 58 }}
-            // source={{uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg=='}}
-            // source={{
-            //   uri:
-            //     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg=="
-            // }}
             source={{ uri: "data:image/png;base64," + this.state.photo }}
           />
         </View>
         <View style={styles.reqContainer}>
           <Text style={styles.reqText}>
-            {itemObj.sendername} is requesting consent for a Description:{" "}
-            {itemObj.preference} . Please Select your preference below!
+            {itemObj.name} {"\n"}
+            {itemObj.description} {"\n"}
+            {itemObj.age} {"\n"}
           </Text>
         </View>
         <View style={styles.reqContainer}>
@@ -217,7 +216,7 @@ class UserProfile extends React.Component {
             title="File Breach"
             onPress={() => {
               this.props.navigation.navigate("BreachConfirmation", {
-                breachConfirm: obj
+                breachConfirm: itemObj
               });
             }}
           />

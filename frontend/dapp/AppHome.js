@@ -1,8 +1,16 @@
 import React,{Component,Fragment} from "react";
 import AppNavigator from "./AppNavigator";
-import { View, Text, Button,StyleSheet } from 'react-native';
-
+import { View, Text, Button,StyleSheet,TouchableHighlight,Alert,Overlay } from 'react-native';
+import Ionicons from "react-native-vector-icons/Ionicons";
 const styles= StyleSheet.create({
+    help:{
+        backgroundColor:'#00adff',
+        paddingTop:20,
+        paddingLeft:30,
+    },
+    helpText:{
+        color:"white"
+    },
     containerStyle: {
         shadowColor: "#000",
         shadowOffset: {
@@ -32,6 +40,9 @@ const styles= StyleSheet.create({
 });
 
 class AppHome extends Component{
+    state={
+        isVisible:false
+    }
    constructor(props){
        super(props)
    }
@@ -42,6 +53,7 @@ class AppHome extends Component{
             <Text style={styles.header}>TRUST#ME</Text>
             <Text style={styles.subHeader}>The Swipe of Trust</Text>
         </View>
+       
          <AppNavigator/>
          </Fragment>
         );
